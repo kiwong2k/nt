@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title>Convergence</title>
+	<link rel="stylesheet" href="css/app.css"/>
+	<link rel="stylesheet" href="/pg/bootstrap/css/bootstrap.css"/>
+</head>
+<body>
+	<div ng-controller="ServiceCtrl">
+		<views>
+    <!--
+			<div ng-repeat="service in services">
+                <div ng-controller="{{service.name}}">
+		    		<pane title="{{service.title}}" svcname="{{service.name}}">{{service.title}} </pane>
+                </div>
+			</div>
+	-->
+            <div ng-controller="MailCtrl" class="iwc-fill">
+                <mailpanel title="Mail" class="iwc-fill" >Mail Service</mailpanel>
+            </div>
+            <div ng-controller="CalCtrl">
+                <pane title="Calendar">Calendar Service</pane>
+            </div>
+            <div ng-controller="AbsCtrl">
+                <pane title="Address Book">Adddress Book Service</pane>
+            </div>
+		</views>
+	</div>
+
+<!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  -->
+	<script src="lib/angular/angular.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="js/mail/mail.js"></script>
+	<script src="js/mail/controllers.js"></script>
+</body>
+</html>
+

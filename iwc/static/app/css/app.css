@@ -1,0 +1,31 @@
+/* app css stylesheet */
+.view-banner {
+    margin: 10px 0px;
+}
+
+.view-banner .logo {
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0px 20px;
+}
+
+.views-container .nav {
+    margin: 0px 10px;
+}
+
+.view-content {
+    height: 500px;
+    border: 1px red solid;
+}
+
+.view-content .view-pane {
+    display: none;
+}
+
+.view-content .active {
+    display: block;
+}
+
+.iwc-fill {
+	min-height: 100%;
+}
