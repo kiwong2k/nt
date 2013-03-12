@@ -26,6 +26,32 @@
     display: block;
 }
 
-.iwc-fill {
+.iwcFill {
 	min-height: 100%;
+}
+
+.iwcEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.iwcFloatRight {
+    float: right;
+}
+
+.iwcFloatLeft {
+    float: left;
+}
+
+.iwcClearBoth {
+    clear: both;
+}
+
+.iwcClearRight {
+    clear: right;
+}
+
+.iwcClearLeft {
+    clear: left;
 }

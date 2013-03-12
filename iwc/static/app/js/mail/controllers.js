@@ -1,4 +1,8 @@
 function MailCtrl($scope) {
+
+}
+
+function MailMsgListCtrl($scope) {
 	$scope.msgs = [
 		{
 			"id": 1,
@@ -28,10 +32,9 @@ function MailCtrl($scope) {
 			"id": 3,
 			"from": "ki.wong@oracle.com",
 			"subject": "American Idol Season 12",
-			"subject": "Convergence Demo",
 			"date": "04 Mar 2013 07:20:23",
 			"text_short": "Hello, this is season 12 of American Idol, the America most watched singing contest.",
-			"html": "Hello, this is season 12 of American Idol, the America most watched singing contest.",
+			"html": "Hello, this is season 12 of American Idol, the America most watched singing contest."
 
 		}
 	];
