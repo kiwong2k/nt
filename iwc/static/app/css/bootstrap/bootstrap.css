@@ -1,3 +1,7 @@
+.iwc .view-pane .row-fluid > div {
+	border: 0px;
+}
+
 .iwc .container-fluid {
 	padding-right: 0px;
 	padding-left: 0px;

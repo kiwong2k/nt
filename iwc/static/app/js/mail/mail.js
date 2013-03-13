@@ -31,11 +31,13 @@ directive('mailpanel', function() {
 						   	/*
 						   	    '<input type="text" class="input-mini search-query" ng-model="selectedFolderDN" disabled>' +
 						   	 */
-							'<ul class="nav nav-pills iwcRoundRadius">' +
+							'<ul class="nav nav-pills">' +
+
 								'<li class="active iwcMaxWidth50"><a class="iwcEllipsis" href="#" ng-model="selectedFolderDN">{{selectedFolderDN}}</a></li>' +
-								'<li><a href="#" ng-click="newFolder()"><i class="icon-plus"></i></a></li>' +
-								'<li><a href="#"><i class="icon-search"></i></a></li>' +
-								'<li><a href="#"><i class="icon-refresh"></i></a></li>' +
+								'<li class="pull-right"><a href="#"><i class="icon-refresh icon-white"></i></a></li>' +
+								'<li class="pull-right"><a href="#"><i class="icon-search icon-white"></i></a></li>' +
+								'<li class="pull-right"><a href="#" ng-click="newFolder()"><i class="icon-plus icon-white"></i></a></li>' +
+
 							'</ul>' +
     					'</div>' +
 
@@ -50,10 +52,10 @@ directive('mailpanel', function() {
 							'<div class="iwcRow iwcRowHover">' +
 								'<div>' +
 								'<div class="iwcFrom">' +
-										//'<div class="iwcFloatRight">{{msg.date}}</div>' +
+										//'<div class="pull-right">{{msg.date}}</div>' +
 										'<div class="iwcEllipsis"><h4>{{msg.from}}</h4></div>' +
 								'</div>' +
-								'<div class="iwcClearRight iwcSubject iwcEllipsis">' +
+								'<div class="clearfix iwcSubject iwcEllipsis">' +
 									'<b>{{msg.subject}}</b>' +
 								'</div>' +
 								'<div class="iwcContent iwcEllipsis">' +
@@ -88,10 +90,10 @@ directive('mailmsglist', function() {
 						'<div class="iwcRow iwcRowHover">' +
 							'<div>' +
 								'<div class="iwcFrom">' +
-									//'<div class="iwcFloatRight">{{msg.date}}</div>' +
+									//'<div class="pull-right">{{msg.date}}</div>' +
 									'<div class="iwcEllipsis"><h4>{{msg.from}}</h4></div>' +
 								'</div>' +
-								'<div class="iwcClearRight iwcSubject iwcEllipsis">' +
+								'<div class="clearfix iwcSubject iwcEllipsis">' +
 									'<b>{{msg.subject}}</b>' +
 								'</div>' +
 								'<div class="iwcContent iwcEllipsis">' +

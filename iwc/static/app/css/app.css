@@ -5,7 +5,7 @@
 }
 
 .view-content {
-    height: 500px;
+    height: 600px;
     border: 1px red solid;
 }
 
@@ -29,26 +29,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.iwcFloatRight {
-    float: right;
-}
-
-.iwcFloatLeft {
-    float: left;
-}
-
-.iwcClear {
-    clear: both;
-}
-
-.iwcClearRight {
-    clear: right;
-}
-
-.iwcClearLeft {
-    clear: left;
 }
 
 .iwcRoundRadius {
