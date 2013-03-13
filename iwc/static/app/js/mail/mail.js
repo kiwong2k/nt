@@ -18,8 +18,17 @@ directive('mailpanel', function() {
 		template:
 			'<div class="view-pane container-fluid" ng-class="{active: selected}">' +
 				'<div class="row-fluid iwcFill">' +
-					'<div class="span2 iwcFill" ng-controller="MailMsgListCtrl">' +
-						'<mailmsglist title="Mail" class="iwcFill" >Mail Service</mailmsglist>' +
+					'<div class="span2 iwcFill iwcMailNavigator">' +
+						'<div class="iwcMailToolbar" ng-controller="MailNavigatorCtrl">' +
+				        	'<input type="text" class="input-mini search-query" ng-model="selectedFolderDN" disabled>' +
+							'<a href="#"><i class="icon-refresh iwcFloatRight"></i></a>' +
+                        	'<a href="#"><i class="icon-search  iwcFloatRight"></i></a>' +
+							'<a href="#" ng-click="newFolder()"><i class="icon-plus iwcFloatRight"></i></a>' +
+    						'</div>' +
+						'<hr>' +
+						'<div ng-controller="MailMsgListCtrl">' +
+							'<mailmsglist title="Mail" class="iwcFill" >Mail Service</mailmsglist>' +
+						'</div>' +
 					'</div>' +
 				/*
 					'<div class="span2 iwcFill">' +

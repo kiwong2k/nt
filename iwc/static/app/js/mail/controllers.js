@@ -2,6 +2,16 @@ function MailCtrl($scope) {
 
 }
 
+function MailNavigatorCtrl($scope) {
+	$scope.selectedFolder = "inbox";
+	$scope.selectedFolderDN = "< " + $scope.selectedFolder;
+
+	$scope.newFolder = function() {
+		alert("New folder not yet implemented");
+	}
+
+}
+
 function MailMsgListCtrl($scope) {
 	$scope.msgs = [
 		{
