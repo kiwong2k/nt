@@ -2,8 +2,11 @@ function MailCtrl($scope) {
 
 }
 
-function MailNavigatorCtrl($scope) {
+function MailNavCtrl($scope) {
 	$scope.selectedFolder = "inbox";
+
+
+
 	$scope.selectedFolderDN = "< " + $scope.selectedFolder;
 
 	$scope.newFolder = function() {

@@ -1,0 +1,10 @@
+.view-banner {
+	margin: 10px 0px;
+	background: #898989;
+}
+
+.view-banner .logo {
+	font-size: 20px;
+	line-height: 20px;
+	margin: 0px 20px;
+}

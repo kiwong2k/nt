@@ -18,17 +18,31 @@ directive('mailpanel', function() {
 		template:
 			'<div class="view-pane container-fluid" ng-class="{active: selected}">' +
 				'<div class="row-fluid iwcFill">' +
-					'<div class="span2 iwcFill iwcMailNavigator">' +
-						'<div class="iwcMailToolbar" ng-controller="MailNavigatorCtrl">' +
-				        	'<input type="text" class="input-mini search-query" ng-model="selectedFolderDN" disabled>' +
-							'<a href="#"><i class="icon-refresh iwcFloatRight"></i></a>' +
-                        	'<a href="#"><i class="icon-search  iwcFloatRight"></i></a>' +
-							'<a href="#" ng-click="newFolder()"><i class="icon-plus iwcFloatRight"></i></a>' +
-    						'</div>' +
-						'<hr>' +
-						'<div ng-controller="MailMsgListCtrl">' +
-							'<mailmsglist title="Mail" class="iwcFill" >Mail Service</mailmsglist>' +
+					'<div class="span3 span3andhalf iwcFill iwcMailNavigator">' +
+
+				/*
+
+						'<div class="iwcMailNavToolbar" ng-controller="MailNavCtrl">' +
+							'<mailnavtoolbar></mailnavtoolbar>' +
+						'<div>' +
+				*/
+
+						'<div class="iwcMailNavToolbar" ng-controller="MailNavCtrl">' +
+						   	/*
+						   	    '<input type="text" class="input-mini search-query" ng-model="selectedFolderDN" disabled>' +
+						   	 */
+							'<ul class="nav nav-pills iwcRoundRadius">' +
+								'<li class="active iwcMaxWidth50"><a class="iwcEllipsis" href="#" ng-model="selectedFolderDN">{{selectedFolderDN}}</a></li>' +
+								'<li><a href="#" ng-click="newFolder()"><i class="icon-plus"></i></a></li>' +
+								'<li><a href="#"><i class="icon-search"></i></a></li>' +
+								'<li><a href="#"><i class="icon-refresh"></i></a></li>' +
+							'</ul>' +
+    					'</div>' +
+
+						'<div class="iwcMsgList" ng-controller="MailMsgListCtrl">' +
+							'<mailmsglist class="iwcFill" >Mail Service</mailmsglist>' +
 						'</div>' +
+
 					'</div>' +
 				/*
 					'<div class="span2 iwcFill">' +
@@ -51,7 +65,7 @@ directive('mailpanel', function() {
 						'</div>' +
 					'</div>' +
 				*/
-					'<div class="span10 iwcFill">' +
+					'<div class="iwcFill hidden-phone">' +
 						'Body content' +
 					'</div>' +
 				'</div>' +
@@ -70,7 +84,7 @@ directive('mailmsglist', function() {
 		},
 		template:
 				'<div>' +
-					'<div class="iwcMsgList" ng-repeat="msg in $parent.msgs">' +
+					'<div class="iwcMsg" ng-repeat="msg in $parent.msgs">' +
 						'<div class="iwcRow iwcRowHover">' +
 							'<div>' +
 								'<div class="iwcFrom">' +
@@ -85,7 +99,6 @@ directive('mailmsglist', function() {
 								'</div>' +
 							'</div>' +
 						'</div>' +
-						'<hr>' +
 					'</div>' +
 				'</div>',
 		replace: true

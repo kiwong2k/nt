@@ -1,5 +1,10 @@
-.iwcMsgList {
+.iwcMailNavToolbar {
+	padding: 5px 0px;
+}
+
+.iwcMsg {
     min-height: 68px;
+	border: 1px #f5f5f5 solid;
 }
 
 .iwcRowHover div:hover > div {

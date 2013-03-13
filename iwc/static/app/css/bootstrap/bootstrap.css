@@ -1,0 +1,17 @@
+.iwc .container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.iwc .row-fluid [class*="span"] {
+	margin-left: 0px;
+}
+
+.iwc .row-fluid .span3andhalf {
+	width: 27%;
+}
+
+.iwcRoundRadius > li > a {
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
