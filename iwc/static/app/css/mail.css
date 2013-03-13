@@ -1,0 +1,7 @@
+.iwcMsgList {
+    min-height: 68px;
+}
+
+.iwcRowHover div:hover > div {
+    background-color: #f5f5f5;
+}
