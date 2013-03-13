@@ -7,7 +7,7 @@ function MailNavigatorCtrl($scope) {
 	$scope.selectedFolderDN = "< " + $scope.selectedFolder;
 
 	$scope.newFolder = function() {
-		alert("New folder not yet implemented");
+		alert("Compose email not yet implemented");
 	}
 
 }

@@ -33,13 +33,26 @@ iwc.app = angular.module('myApp', []).
 			template:
 				'<div class="views-container">' +
 					'<div class="view-banner">' +
-					'<span class="logo">Convergence</span>' +
-					'<span class="nav" ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
-						'<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
-					'</span>' +
+						'<span class="logo">Convergence</span>' +
+						'<span class="nav" ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
+							'<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
+						'</span>' +
+						'<div class="btn-group iwcFloatRight">' +
+                      		'<a class="btn" href="#"><i class="icon-user"></i> Jeff Lin</a>' +
+							'<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>' +
+							'<ul class="dropdown-menu">' +
+								'<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>' +
+								'<li><a href="#"><i class="icon-trash"></i> Delete</a></li>' +
+								'<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>' +
+								'<li class="divider"></li>' +
+								'<li><a href="#"><i class="i"></i> Make admin</a></li>' +
+							'</ul>' +
+						'</div>' +
+						'<a href="#"><i class="icon-cog iwcFloatRight"></i></a>' +
+						'<a href="#"><i class="icon-fire iwcFloatRight"></i></a>' +
 					'</div>' +
 					'<div class="view-content" ng-transclude></div>' +
-					'</div>',
+				'</div>',
 			replace: true
 		};
 	}).
