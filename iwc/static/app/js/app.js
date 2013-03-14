@@ -51,8 +51,8 @@ iwc.app = angular.module('myApp', []).
 									'</ul>' +
 								'</div>' +
 							'</li>' +
-							'<li class="pull-right"><a href="#"><i class="icon-cog icon-white"></i></a></li>' +
-							'<li class="pull-right"><a href="#"><i class="icon-fire icon-white"></i></a></li>' +
+							'<li class="pull-right iwcNoRoundRadius"><a href="#"><i class="icon-cog icon-white"></i></a></li>' +
+							'<li class="pull-right iwcNoRoundRadius"><a href="#"><i class="icon-fire icon-white"></i></a></li>' +
 						'</ul>' +
 					/*
 						'<div class="btn-group pull-right">' +

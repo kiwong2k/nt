@@ -38,3 +38,7 @@
 .iwcMaxWidth50 {
 	max-width: 50%;
 }
+
+.iwcNoRoundRadius {
+	border-radius: 0px !important;
+}
