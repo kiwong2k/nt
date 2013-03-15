@@ -19,21 +19,9 @@ directive('mailpanel', function() {
 			'<div class="view-pane container-fluid" ng-class="{active: selected}">' +
 				'<div class="row-fluid iwcFill">' +
 					'<div class="span3 span3andhalf iwcFill iwcMailNavigator">' +
-
-				/*
-
-						'<div class="iwcMailNavToolbar" ng-controller="MailNavCtrl">' +
-							'<mailnavtoolbar></mailnavtoolbar>' +
-						'<div>' +
-				*/
-
-						'<div class="iwcMailNavToolbar" ng-controller="MailNavCtrl">' +
-						   	/*
-						   	    '<input type="text" class="input-mini search-query" ng-model="selectedFolderDN" disabled>' +
-						   	 */
-							'<ul class="nav nav-pills">' +
-
-								'<li class="active iwcMaxWidth50"><a class="iwcEllipsis" href="#" ng-model="selectedFolderDN">{{selectedFolderDN}}</a></li>' +
+                			'<div class="iwcMailNavToolbar" ng-controller="MailNavCtrl">' +
+						   	'<ul class="nav nav-pills">' +
+                     			'<li class="active iwcMaxWidth50"><a class="iwcEllipsis" href="#" ng-model="selectedFolderDN">{{selectedFolderDN}}</a></li>' +
 								'<li class="pull-right"><a href="#"><i class="icon-refresh icon-white"></i></a></li>' +
 								'<li class="pull-right"><a href="#"><i class="icon-search icon-white"></i></a></li>' +
 								'<li class="pull-right"><a href="#" ng-click="newFolder()"><i class="icon-plus icon-white"></i></a></li>' +
@@ -46,27 +34,6 @@ directive('mailpanel', function() {
 						'</div>' +
 
 					'</div>' +
-				/*
-					'<div class="span2 iwcFill">' +
-						'<div class="iwcMsgList" ng-repeat="msg in $parent.msgs">' +
-							'<div class="iwcRow iwcRowHover">' +
-								'<div>' +
-								'<div class="iwcFrom">' +
-										//'<div class="pull-right">{{msg.date}}</div>' +
-										'<div class="iwcEllipsis"><h4>{{msg.from}}</h4></div>' +
-								'</div>' +
-								'<div class="clearfix iwcSubject iwcEllipsis">' +
-									'<b>{{msg.subject}}</b>' +
-								'</div>' +
-								'<div class="iwcContent iwcEllipsis">' +
-									'{{msg.html}}' +
-								'</div>' +
-								'</div>' +
-							'</div>' +
-							'<hr>' +
-						'</div>' +
-					'</div>' +
-				*/
 					'<div class="iwcFill hidden-phone">' +
 						'Body content' +
 					'</div>' +

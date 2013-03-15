@@ -54,21 +54,6 @@ iwc.app = angular.module('myApp', []).
 							'<li class="pull-right"><a href="#"><i class="icon-cog icon-white"></i></a></li>' +
 							'<li class="pull-right"><a href="#"><i class="icon-fire icon-white"></i></a></li>' +
 						'</ul>' +
-					/*
-						'<div class="btn-group pull-right">' +
-                      		'<a class="btn" href="#"><i class="icon-user"></i> Jeff Lin</a>' +
-							'<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>' +
-							'<ul class="dropdown-menu">' +
-								'<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>' +
-								'<li><a href="#"><i class="icon-trash"></i> Delete</a></li>' +
-								'<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>' +
-								'<li class="divider"></li>' +
-								'<li><a href="#"><i class="i"></i> Make admin</a></li>' +
-							'</ul>' +
-						'</div>' +
-						'<a href="#"><i class="icon-cog pull-right"></i></a>' +
-						'<a href="#"><i class="icon-fire pull-right"></i></a>' +
-					*/
 					'</div>' +
 					'<div class="view-content" ng-transclude></div>' +
 				'</div>',
