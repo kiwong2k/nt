@@ -1,5 +1,6 @@
 .iwc .view-pane .row-fluid > div {
 	border: 0px;
+	border-right: 1px #f5f5f5 solid;
 }
 
 .iwc .container-fluid {
@@ -15,7 +16,7 @@
 	width: 27%;
 }
 
-.iwcRoundRadius > li > a {
+.iwc .nav-pills > li > a {
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 }

@@ -17,10 +17,6 @@
     display: block;
 }
 
-.view-pane .row-fluid > div {
-	border: 1px #f5f5f5 solid;
-}
-
 .iwcFill {
 	height: 100%;
 }
@@ -31,14 +27,7 @@
     white-space: nowrap;
 }
 
-.iwcRoundRadius {
-	border-radius: 15px;
-}
-
 .iwcMaxWidth50 {
 	max-width: 50%;
 }
 
-.iwcNoRoundRadius {
-	border-radius: 0px !important;
-}

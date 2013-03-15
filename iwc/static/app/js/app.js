@@ -33,7 +33,7 @@ iwc.app = angular.module('myApp', []).
 			template:
 				'<div class="views-container">' +
 					'<div class="view-banner">' +
-						'<ul class="nav nav-pills iwcRoundRadius">' +
+						'<ul class="nav nav-pills">' +
 							'<li><span class="logo">Convergence</span></li>' +
 							'<li class="nav" ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
 								'<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
@@ -51,8 +51,8 @@ iwc.app = angular.module('myApp', []).
 									'</ul>' +
 								'</div>' +
 							'</li>' +
-							'<li class="pull-right iwcNoRoundRadius"><a href="#"><i class="icon-cog icon-white"></i></a></li>' +
-							'<li class="pull-right iwcNoRoundRadius"><a href="#"><i class="icon-fire icon-white"></i></a></li>' +
+							'<li class="pull-right"><a href="#"><i class="icon-cog icon-white"></i></a></li>' +
+							'<li class="pull-right"><a href="#"><i class="icon-fire icon-white"></i></a></li>' +
 						'</ul>' +
 					/*
 						'<div class="btn-group pull-right">' +

@@ -88,13 +88,18 @@ directive('mailmsglist', function() {
 				'<div>' +
 					'<div class="iwcMsg" ng-repeat="msg in $parent.msgs">' +
 						'<div class="iwcRow iwcRowHover">' +
-							'<div>' +
+							'<div class="inline-block">' +
+					            '<label class="checkbox">' +
+									'<input type="checkbox">' +
+								'</label>' +
+							'</div>' +
+							'<div class="inline-block">' +
 								'<div class="iwcFrom">' +
 									//'<div class="pull-right">{{msg.date}}</div>' +
-									'<div class="iwcEllipsis"><h4>{{msg.from}}</h4></div>' +
+									'<div class="iwcEllipsis">{{msg.from}}</div>' +
 								'</div>' +
-								'<div class="clearfix iwcSubject iwcEllipsis">' +
-									'<b>{{msg.subject}}</b>' +
+								'<div class="iwcSubject iwcEllipsis">' +
+									'{{msg.subject}}' +
 								'</div>' +
 								'<div class="iwcContent iwcEllipsis">' +
 									'{{msg.html}}' +
