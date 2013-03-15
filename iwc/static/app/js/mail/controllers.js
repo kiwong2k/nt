@@ -18,7 +18,7 @@ function MailNavCtrl($scope) {
 function MailMsgListCtrl($scope) {
 	$scope.msgs = [
 		{
-			"id": 1,
+			"uid": 1,
 			"from": "Bill Abbott <william.abbott@oracle.com>",
 			"To": "convergence scrum <cgbu-ucs-conv-scrum_ww@oracle.com>",
 			"subject": "Convergence Sprint 73 retrospective",
@@ -33,7 +33,7 @@ function MailMsgListCtrl($scope) {
 				'goals</a>.<br>	<br>Thanks,<br>	<br>=C2=A0 Bill<br>	<br><br></body>	</html>'
 		},
 		{
-			"id": 2,
+			"uid": 2,
 			"from": "ki.wong@oracle.com",
 			"subject": "Convergence Demo",
 			"date": "04 Mar 2013 07:20:23",
@@ -42,7 +42,7 @@ function MailMsgListCtrl($scope) {
 
 		},
 		{
-			"id": 3,
+			"uid": 3,
 			"from": "ki.wong@oracle.com",
 			"subject": "American Idol Season 12",
 			"date": "04 Mar 2013 07:20:23",
@@ -51,5 +51,12 @@ function MailMsgListCtrl($scope) {
 
 		}
 	];
+
+}
+
+function MailViewerCtrl($scope) {
+	$scope.$on('MailViewerCtrl-SelectMsg', function(event, uid, msg) {
+		alert("message " + uid + " is selected");
+	});
 
 }
