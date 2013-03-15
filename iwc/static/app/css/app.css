@@ -31,3 +31,18 @@
 	max-width: 50%;
 }
 
+.iwcLayoutContainer > div {
+/*	position: absolute; */
+}
+
+.iwcLayoutTop {
+	top: 0px;
+}
+
+.iwcLayoutCenter {
+
+}
+
+.iwcLayoutBottom {
+	bottom: 0px;
+}

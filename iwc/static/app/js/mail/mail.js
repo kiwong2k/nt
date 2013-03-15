@@ -97,18 +97,26 @@ directive('mailviewer', function() {
 		},
 		template:
 			'<div>' +
-				'<div class="iwcMsgHeader">' +
-					'<div class="iwcSubject iwcEllipsis">' +
-						'{{$parent.msg.subject}}' +
+				'<div class="iwcLayoutContainer">' +
+					'<div class="iwcLayoutTop iwcMsgHeader">' +
+						'<div class="iwcSubject iwcEllipsis">' +
+							'{{$parent.msg.subject}}' +
+						'</div>' +
+						'<div class="iwcFrom iwcEllipsis">' +
+							'{{$parent.msg.from}}' +
+						'</div>' +
 					'</div>' +
-					'<div class="iwcFrom iwcEllipsis">' +
-						'{{$parent.msg.from}}' +
+
+					'<div class="iwcLayoutCenter iwcMsgBody">' +
+						'<div class="iwcContent iwcEllipsis">' +
+							'{{$parent.msg.html}}' +
+						'</div>' +
 					'</div>' +
-				'</div>' +
-				'<div class="iwcMsgBody">' +
-					'<div class="iwcContent iwcEllipsis">' +
-						'{{$parent.msg.html}}' +
+
+					'<div class="iwcLayoutBottom iwcMsgFooter">' +
+						'this is bottom footer' +
 					'</div>' +
+
 				'</div>' +
 			'</div>',
 		replace: true
