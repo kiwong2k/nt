@@ -18,7 +18,7 @@ directive('mailpanel', function() {
 		template:
 			'<div class="view-pane container-fluid" ng-class="{active: selected}">' +
 				'<div class="row-fluid iwcFill">' +
-					'<div class="span3 span3andhalf iwcFill iwcMailNavigator">' +
+					'<div class="span3 iwcFill iwcMailNavigator">' +
                 			'<div class="iwcMailNavToolbar" ng-controller="MailNavCtrl">' +
 						   	'<ul class="nav nav-pills">' +
                      			'<li class="active iwcMaxWidth50"><a class="iwcEllipsis" href="#" ng-model="selectedFolderDN">{{selectedFolderDN}}</a></li>' +
@@ -71,10 +71,10 @@ directive('mailmsglist', function() {
 						'<div class="inline-block">' +
 							'<div class="iwcFrom">' +
 								//'<div class="pull-right">{{msg.date}}</div>' +
-								'<div class="iwcEllipsis">{{msg.from}}</div>' +
+								'<div class="iwcEllipsis">{{msg.subject}}</div>' +
 							'</div>' +
 							'<div class="iwcSubject iwcEllipsis">' +
-								'{{msg.subject}}' +
+								'{{msg.from}}' +
 							'</div>' +
 							'<div class="iwcContent iwcEllipsis">' +
 								'{{msg.html}}' +
@@ -99,15 +99,15 @@ directive('mailviewer', function() {
 			'<div>' +
 				'<div class="iwcMsgHeader">' +
 					'<div class="iwcSubject iwcEllipsis">' +
-						'{{msg.subject}}' +
+						'{{$parent.msg.subject}}' +
 					'</div>' +
 					'<div class="iwcFrom iwcEllipsis">' +
-						'{{msg.from}}' +
+						'{{$parent.msg.from}}' +
 					'</div>' +
 				'</div>' +
 				'<div class="iwcMsgBody">' +
 					'<div class="iwcContent iwcEllipsis">' +
-						'{{msg.html}}' +
+						'{{$parent.msg.html}}' +
 					'</div>' +
 				'</div>' +
 			'</div>',

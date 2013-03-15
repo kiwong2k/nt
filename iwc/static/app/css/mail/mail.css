@@ -1,15 +1,5 @@
-.iwcMailNavToolbar {
-	padding: 5px 0px;
-	background-color: #808080
-}
-
-.iwcMsg {
-    min-height: 68px;
-	border: 1px #f5f5f5 solid;
-}
-
-.iwcRowHover div:hover > div {
-    background-color: #f5f5f5;
+.iwcMailNavigator {
+	border-right: 1px black solid;
 }
 
 .iwcMailNavigator .iwcFrom {
@@ -28,3 +18,18 @@
 	line-height: 20px;
 	color: #777;
 }
+
+.iwcMailNavToolbar {
+	padding: 5px 0px;
+	background-color: #808080
+}
+
+.iwcMsg {
+    min-height: 68px;
+	border: 1px #f5f5f5 solid;
+}
+
+.iwcRowHover div:hover > div {
+    background-color: #f5f5f5;
+}
+

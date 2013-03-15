@@ -56,7 +56,11 @@ function MailMsgListCtrl($scope) {
 
 function MailViewerCtrl($scope) {
 	$scope.$on('MailViewerCtrl-SelectMsg', function(event, uid, msg) {
-		alert("message " + uid + " is selected");
+		$scope.selectMsg(msg);
 	});
+
+	$scope.selectMsg = function(msg) {
+		$scope.msg = msg;
+	}
 
 }
