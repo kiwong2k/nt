@@ -1,48 +1,9 @@
 /* app css stylesheet */
 
-.views-container .nav {
-    margin: 0px 10px;
+.iwc-main-container > div {
+	display:  none;
 }
 
-.view-content {
-    height: 600px;
-    border: 1px red solid;
-}
-
-.view-content .view-pane {
-    display: none;
-}
-
-.view-content .active {
-    display: block;
-}
-
-.iwcFill {
-	height: 100%;
-}
-
-.iwcEllipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.iwcMaxWidth50 {
-	max-width: 50%;
-}
-
-.iwcLayoutContainer > div {
-/*	position: absolute; */
-}
-
-.iwcLayoutTop {
-	top: 0px;
-}
-
-.iwcLayoutCenter {
-
-}
-
-.iwcLayoutBottom {
-	bottom: 0px;
+.iwc-main-container > div.active {
+	display: block;
 }

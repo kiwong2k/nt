@@ -1,10 +1,10 @@
-.iwcBanner {
+.iwc-banner {
 	padding: 0px 0px;
 /*	background-color: #595959; */
 }
 
 
-.iwcBanner .navbar-inner {
+.iwc-banner .navbar-inner {
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
 

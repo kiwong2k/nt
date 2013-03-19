@@ -15,8 +15,13 @@ iwc.app.directive('banner', function() {
 		restrict: 'E',
 		transclude: true,
 		scope: { title: '@', svcname: '@' },
+		controller: function($scope, $element, $rootScope) {
+			$scope.select = function(panel) {
+				$rootScope.$broadcast('iwcServiceCtrl-selectPanel', panel)
+			}
+		},
 		template:
-			'<div class="iwcBanner">' +
+			'<div class="iwc-banner">' +
 				'<div class="navbar navbar-inverse">' +
 					'<div class="navbar-inner">' +
 						'<div class="container-fluid">' +
@@ -28,8 +33,8 @@ iwc.app.directive('banner', function() {
 							'<a class="brand" >Convergence</a>' +
 							'<div class="nav-collapse collapse">' +
 								'<ul class="nav">' +
-									'<li class="nav" ng-repeat="pane in $parent.panels" ng-class="{active:pane.selected}">'+
-										'<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
+									'<li class="nav" ng-repeat="panel in $parent.panels" ng-class="{active:panel.selected}">'+
+										'<a href="" ng-click="select(panel)">{{panel.title}}</a>' +
 									'</li>' +
 								'</ul>' +
 								'<ul class="nav pull-right">' +
@@ -58,6 +63,8 @@ iwc.app.directive('banner', function() {
 		replace: true
 	};
 });
+
+/*
 
 iwc.app.directive('views', function() {
 	return {
@@ -103,3 +110,5 @@ iwc.app.directive('pane', function() {
 		replace: true
 	};
 })  ;
+
+*/
