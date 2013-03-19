@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" ng-controller="iwcServiceCtrl">
 <head>
 	<meta charset="utf-8">
 	<title>Convergence</title>
@@ -17,13 +17,12 @@
 
 </head>
 <body class="iwc">
-	<div ng-controller="iwcServiceCtrl">
-		<banner>banner</banner>
-		<div class="iwc-main-container">
-			<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
-				<ng-include src="panel.template">
-			</div>
+	<banner>banner</banner>
+	<div class="iwc-main-container">
+		<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
+			<ng-include src="panel.template">
 		</div>
+	</div>
 
 		<!--
 		<views>
@@ -38,7 +37,6 @@
             </div>
 		</views>
 		-->
-	</div>
 
 <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>

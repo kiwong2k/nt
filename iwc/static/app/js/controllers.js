@@ -24,5 +24,6 @@ function iwcServiceCtrl($scope) {
 	]
 
  	$scope.panels[0].selected = true;
+
 }
 

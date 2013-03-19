@@ -14,7 +14,7 @@ iwc.app.directive('banner', function() {
 	return {
 		restrict: 'E',
 		transclude: true,
-		scope: { title: '@', svcname: '@' },
+		scope: { },
 		controller: function($scope, $element, $rootScope) {
 			$scope.select = function(panel) {
 				$rootScope.$broadcast('iwcServiceCtrl-selectPanel', panel)
@@ -64,51 +64,3 @@ iwc.app.directive('banner', function() {
 	};
 });
 
-/*
-
-iwc.app.directive('views', function() {
-	return {
-		restrict: 'E',
-		transclude: true,
-		scope: {},
-		controller: function($scope, $element) {
-			var panes = $scope.panes = [];
-
-			$scope.select = function(pane) {
-                angular.forEach(panes, function(pane) {
-					pane.selected = false;
-				});
-				pane.selected = true;
-
-            }
-
-			this.addPane = function(pane) {
-				if (panes.length == 0) $scope.select(pane);
-				panes.push(pane);
-			}
-		},
-		template:
-			'<div class="views-container">' +
-				'<div class="view-content" ng-transclude></div>' +
-			'</div>',
-		replace: true
-	};
-});
-
-iwc.app.directive('pane', function() {
-	return {
-		require: '^views',
-		restrict: 'E',
-		transclude: true,
-		scope: { title: '@', svcname: '@' },
-		link: function(scope, element, attrs, viewsCtrl) {
-			viewsCtrl.addPane(scope);
-		},
-		template:
-			'<div class="view-pane" ng-class="{active: selected}" ng-transclude>' +
-				'</div>',
-		replace: true
-	};
-})  ;
-
-*/

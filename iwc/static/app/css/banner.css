@@ -1,5 +1,6 @@
 .iwc-banner {
 	padding: 0px 0px;
+	height: 42px;   // changing this value also changes "iwc-main-container"
 /*	background-color: #595959; */
 }
 
@@ -8,5 +9,9 @@
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
 
+}
+
+.iwc-banner .brand {
+	color: white;
 }
 
