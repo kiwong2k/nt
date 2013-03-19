@@ -1,14 +1,4 @@
-
-.iwc .container-fluid {
-	padding-right: 0px;
-	padding-left: 0px;
+.navbar {
+	margin: 0px;
 }
 
-.iwc .row-fluid [class*="span"] {
-	margin-left: 0px;
-}
-
-.iwc .nav-pills > li > a {
-	-moz-border-radius: 15px;
-	border-radius: 15px;
-}

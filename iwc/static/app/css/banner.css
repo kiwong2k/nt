@@ -1,10 +1,12 @@
-.view-banner {
-	padding: 10px 0px;
-	background-color: #595959;
+.iwcBanner {
+	padding: 0px 0px;
+/*	background-color: #595959; */
 }
 
-.view-banner .logo {
-	font-size: 20px;
-	line-height: 20px;
-	margin: 0px 20px;
+
+.iwcBanner .navbar-inner {
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+
 }
+

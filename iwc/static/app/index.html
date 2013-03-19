@@ -17,16 +17,17 @@
 
 </head>
 <body class="iwc">
-	<div ng-controller="ServiceCtrl">
+	<div ng-controller="iwcServiceCtrl">
+		<banner>banner</banner>
 		<views>
-    <!--
-			<div ng-repeat="service in services">
-                <div ng-controller="{{service.name}}">
-		    		<pane title="{{service.title}}" svcname="{{service.name}}">{{service.title}} </pane>
-                </div>
-			</div>
-	-->
-            <div ng-controller="MailCtrl" class="iwcFill">
+			<pane ng-repeat="panel in panels">
+				<div ng-include ng-src="panel.template"></div>
+			</pane>
+		</views>
+
+		<!--
+		<views>
+             <div ng-controller="MailCtrl" class="iwcFill">
                 <mailpanel title="Mail" class="iwcFill" >Mail Service</mailpanel>
             </div>
             <div ng-controller="CalCtrl">
@@ -36,6 +37,7 @@
                 <pane title="Address Book">Adddress Book Service</pane>
             </div>
 		</views>
+		-->
 	</div>
 
 <!-- In production use:
