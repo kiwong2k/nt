@@ -1,3 +1,10 @@
+.iwc-mail-navigator-panel {
+	width: 260px;
+	margin: 5px;
+	padding: 10px;
+	border: 3px solid;
+}
+
 .iwc-mail-navigator {
 	border-right: 1px black solid;
 }

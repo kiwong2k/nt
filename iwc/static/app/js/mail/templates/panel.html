@@ -1,5 +1,16 @@
 <div class="iwc-mail-panel" ng-controller="IwcMailCtrl">
+	<!--
 	<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
 		<ng-include src="panel.template"></ng-include>
 	</div>
+	-->
+	<div iwcng-layout>
+		<div iwcng-left class="iwc-mail-navigator-panel">
+			<ng-include src="panels[0].template"></ng-include>
+		</div>
+		<div iwcng-center class="iwc-mail-viewer-panel">
+			<ng-include src="panels[1].template"></ng-include>
+		</div>
+	</div>
+
 </div>
