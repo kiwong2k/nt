@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function iwcServiceCtrl($scope) {
+function IwcServiceCtrl($scope) {
 	$scope.$on('iwcServiceCtrl-selectPanel', function(event, panel) {
 		angular.forEach($scope.panels, function(p) {
 			p.selected = false;
@@ -18,9 +18,9 @@ function iwcServiceCtrl($scope) {
 	];
 
 	$scope.panels = [
-		{template: 'js/mail/panel.html', "title": "Mail", "selected": false},
-		{template: 'js/calendar/panel.html', "title": "Calendar", "selected": false},
-		{template: 'js/addressbook/panel.html', "title": "Address Book", "selected": false}
+		{template: 'js/mail/templates/panel.html', "title": "Mail", "selected": false},
+		{template: 'js/calendar/templates/panel.html', "title": "Calendar", "selected": false},
+		{template: 'js/addressbook/templates/panel.html', "title": "Address Book", "selected": false}
 	]
 
  	$scope.panels[0].selected = true;
