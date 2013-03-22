@@ -22,6 +22,7 @@ html, body {
 
 .iwc-main-container > div {
 	display:  none;
+	height: 100%;
 }
 
 .iwc-main-container > div.active {

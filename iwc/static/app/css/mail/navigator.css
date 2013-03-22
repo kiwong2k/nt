@@ -1,0 +1,41 @@
+.iwc-mail-navigator-panel {
+	width: 260px;
+	margin: 5px;
+	padding: 10px;
+	border: 3px solid red;
+}
+
+.iwc-mail-navigator {
+	border-right: 1px black solid;
+}
+
+.iwc-mail-navigator .iwc-from {
+	font-size: 17px;
+	font-weight: 300;
+	line-height: 24px;
+}
+
+.iwc-mail-navigator .iwc-subject {
+	font-size: 13px;
+	line-height: 17px;
+}
+
+.iwc-mail-navigator .iwcContent {
+	font-size: 13px;
+	line-height: 20px;
+	color: #777;
+}
+
+.iwc-mail-navbar {
+	padding: 5px 0px;
+	background-color: #808080
+}
+
+.iwc-msg {
+	min-height: 68px;
+	border: 1px #f5f5f5 solid;
+}
+
+.iwc-row-hover div:hover > div {
+	background-color: #f5f5f5;
+}

@@ -1,0 +1,17 @@
+.iwc-mail-viewer-panel {
+	border: 3px solid green;
+}
+
+.iwc-mail-viewer .iwc-msg-header {
+	height: 100px;
+}
+
+.iwc-mail-viewer .iwc-msg-footer {
+	height: 50px;
+}
+
+.iwc-mail-viewer .iwc-msg-body {
+	height: 100%;
+	top: 100px;
+	bottom: 50px;
+}

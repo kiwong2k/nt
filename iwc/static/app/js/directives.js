@@ -7,6 +7,10 @@ iwc.app.
 		return {
 			restrict: 'A',
 			scope: {},
+			link: function(scope, element, attrs) {
+				$(element).css('height', '100%');
+				$(element).css('position', 'relative');
+			},
 			controller: function($scope, $element) {
 				var lefts = $scope.lefts = [];
 				var rights = $scope.rights = [];
@@ -38,20 +42,26 @@ iwc.app.
 					// only handle left center right  or top center bottom
 					if (lefts.length || rights.length) {
 
-						// float left or right
-
 						var marginLeft = 0, marginRight = 0;
 
+						// cannot use float left/rght because height issue
+						// use position:absolute instead
 						angular.forEach(lefts, function(left, i) {
+
+							$(left).css('position', 'absolute');
+							$(left).css('left', marginLeft);
+							$(left).css('top', '0');
+							$(left).css('bottom', '0');
+
 							marginLeft += $(left).outerWidth(true);
-							$(left).css('float', 'left');
-							$(left).css('height', '100%');
 						});
 
 						angular.forEach(rights, function(right, i) {
+   							$(right).css('position', 'absolute');
+							$(right).css('right', marginRight)
+							$(right).css('top', '0');
+							$(right).css('bottom', '0');
 							marginRight += $(right).outerWidth(true);
-							$(right).css('float', 'right');
-							$(right).css('height', '100%');
 						});
 
 
@@ -60,11 +70,12 @@ iwc.app.
 						//      margin-left: marginLeft
 						//      margin-right: marginRight
 						//      width: auto
-						$(element).css('position', 'relative');
-						$(element).css('margin-left', marginLeft);
-						$(element).css('margin-right', marginRight);
+						$(element).css('position', 'absolute');
+						$(element).css('left', marginLeft);
+						$(element).css('right', marginRight);
 						$(element).css('width', 'auto');
-						$(element).css('height', '100%');
+						$(element).css('top', '0');
+						$(element).css('bottom', '0');
 
 					}
 					console.log("layoutCenter", pane, element);
