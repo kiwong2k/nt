@@ -1,11 +1,10 @@
-function MailCtrl($scope) {
+function IwcMailCtrl($scope) {
+	$scope.panels = [
+		{"template": 'js/mail/templates/navigator.html', "selected": true},
+		{"template": 'js/mail/templates/viewer.html', "selected": true}
+	]
 
-}
-
-function MailNavCtrl($scope) {
 	$scope.selectedFolder = "inbox";
-
-
 
 	$scope.selectedFolderDN = "< " + $scope.selectedFolder;
 
@@ -13,9 +12,21 @@ function MailNavCtrl($scope) {
 		alert("Compose email not yet implemented");
 	}
 
+
 }
 
-function MailMsgListCtrl($scope) {
+function IwcMailNavCtrl($scope) {
+
+	$scope.panels = [
+		{"template": 'js/mail/templates/navbar.html', "selected": true},
+		{"template": 'js/mail/templates/msglist.html', "selected": true}
+	]
+
+
+}
+
+
+function IwcMailMsgListCtrl($scope) {
 	$scope.msgs = [
 		{
 			"uid": 1,

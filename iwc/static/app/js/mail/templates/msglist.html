@@ -1,0 +1,22 @@
+<div class="iwc-msglist" ng-controller="IwcMailMsgListCtrl">
+	<div class="iwc-msg" ng-repeat="msg in $parent.msgs" ng-click="rowClicked()">
+		<div class="iwc-row iwc-row-hover">
+			<div class="inline-block">
+				<label class="checkbox">
+					<input type="checkbox">
+					</label>
+				</div>
+			<div class="inline-block">
+				<div class="iwc-from iwcEllipsis">
+					{{msg.subject}}
+				</div>
+				<div class="iwc-subject iwcEllipsis">
+					{{msg.from}}' +
+				</div>
+				<div class="iwc-content iwcEllipsis">
+					{{msg.html}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

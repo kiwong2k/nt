@@ -1,47 +1,47 @@
-.iwcMailNavigator {
+.iwc-mail-navigator {
 	border-right: 1px black solid;
 }
 
-.iwcMailNavigator .iwcFrom {
+.iwc-mail-navigator .iwc-from {
 	font-size: 17px;
 	font-weight: 300;
 	line-height: 24px;
 }
 
-.iwcMailNavigator .iwcSubject {
+.iwc-mail-navigator .iwc-subject {
 	font-size: 13px;
 	line-height: 17px;
 }
 
-.iwcMailNavigator .iwcContent {
+.iwc-mail-navigator .iwcContent {
 	font-size: 13px;
 	line-height: 20px;
 	color: #777;
 }
 
-.iwcMailNavToolbar {
+.iwc-mail-navbar {
 	padding: 5px 0px;
 	background-color: #808080
 }
 
-.iwcMsg {
+.iwc-msg {
     min-height: 68px;
 	border: 1px #f5f5f5 solid;
 }
 
-.iwcRowHover div:hover > div {
+.iwc-row-hover div:hover > div {
     background-color: #f5f5f5;
 }
 
-.iwcMailViewer .iwcMsgHeader {
+.iwc-mail-viewer .iwc-msg-header {
 	height: 100px;
 }
 
-.iwcMailViewer .iwcMsgFooter {
+.iwc-mail-viewer .iwc-msg-footer {
 	height: 50px;
 }
 
-.iwcMailViewer .iwcMsgBody {
+.iwc-mail-viewer .iwc-msg-body {
 	height: 100%;
 	top: 100px;
 	bottom: 50px;
