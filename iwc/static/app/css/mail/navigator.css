@@ -6,7 +6,7 @@
 }
 
 .iwc-mail-navigator {
-	border-right: 1px black solid;
+	border: 1px black solid;
 }
 
 .iwc-mail-navigator .iwc-from {
@@ -27,8 +27,15 @@
 }
 
 .iwc-mail-navbar {
+	height: 35px;
 	padding: 5px 0px;
 	background-color: #808080
+}
+
+.iwc-msglist {
+	padding: 10px;
+	margin: 5px;
+	border: 3px solid royalblue;
 }
 
 .iwc-msg {

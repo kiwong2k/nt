@@ -1,4 +1,4 @@
-<div class="iwc-mail-navigator" ng-controller="IwcMailNavCtrl">
+<div class="iwc-mail-navigator" ng-controller="IwcMailNavCtrl" iwcng-layout >
 	<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
 		<ng-include src="panel.template"></ng-include>
 	</div>
