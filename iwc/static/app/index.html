@@ -17,26 +17,14 @@
 
 </head>
 <body class="iwc">
-	<banner>banner</banner>
-	<div class="iwc-main-container">
-		<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
-			<ng-include src="panel.template"></ng-include>
+	<div iwcng-layout ng-model="panels">
+		<banner iwcng-top>banner</banner>
+		<div class="iwc-main-container"  iwcng-center ng-model="panels">
+			<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
+				<ng-include src="panel.template"></ng-include>
+			</div>
 		</div>
 	</div>
-
-		<!--
-		<views>
-             <div ng-controller="MailCtrl" class="iwcFill">
-                <mailpanel title="Mail" class="iwcFill" >Mail Service</mailpanel>
-            </div>
-            <div ng-controller="CalCtrl">
-                <pane title="Calendar">Calendar Service</pane>
-            </div>
-            <div ng-controller="AbsCtrl">
-                <pane title="Address Book">Adddress Book Service</pane>
-            </div>
-		</views>
-		-->
 
 <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
