@@ -31,13 +31,13 @@ iwc.app.
 				this.layoutLeft = function(pane, element) {
 					console.log("layoutLeft", pane, element);
 					lefts.push(element);
-					ltr = (ltr == undefined) ? true : ltr;
+					ltr = (ltr === undefined) ? true : ltr;
 				}
 
 				this.layoutRight = function(pane, element) {
 					console.log("layoutRight", pane);
 					rights.push(element);
-					ltr = (ltr == undefined) ? true : ltr;
+					ltr = (ltr === undefined) ? true : ltr;
 				}
 
 				this.left2Right = function() {
@@ -117,6 +117,7 @@ iwc.app.
 	directive('iwcngTop', function() {
 		return {
 			require: '^iwcngLayout',
+			scope: true,
 			restrict: 'A',
 			link: function(scope, element, attrs, layoutCtrl) {
 				layoutCtrl.layoutTop(scope, element);
@@ -126,6 +127,7 @@ iwc.app.
 	directive('iwcngBottom', function() {
 		return {
 			require: '^iwcngLayout',
+			scope: true,
 			restrict: 'A',
 			link: function(scope, element, attrs, layoutCtrl) {
 				layoutCtrl.layoutBottom(scope, element);
@@ -135,6 +137,7 @@ iwc.app.
 	directive('iwcngLeft', function() {
 		return {
 			require: '^iwcngLayout',
+			scope: true,
 			restrict: 'A',
 			link: function(scope, element, attrs, layoutCtrl) {
 				layoutCtrl.layoutLeft(scope, element);
@@ -144,6 +147,7 @@ iwc.app.
 	directive('iwcngRight', function() {
 		return {
 			require: '^iwcngLayout',
+			scope: true,
 			restrict: 'A',
 			link: function(scope, element, attrs, layoutCtrl) {
 				layoutCtrl.layoutRight(scope, element);

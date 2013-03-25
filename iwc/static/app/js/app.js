@@ -14,10 +14,10 @@ iwc.app.directive('banner', function() {
 	return {
 		restrict: 'E',
 		transclude: true,
-		scope: { },
+		scope: true,
 		controller: function($scope, $element, $rootScope) {
 			$scope.select = function(panel) {
-				$rootScope.$broadcast('iwcServiceCtrl-selectPanel', panel)
+				$rootScope.$broadcast('iwcServiceCtrl-selectPanel', panel);
 			}
 		},
 		template:
@@ -55,7 +55,7 @@ iwc.app.directive('banner', function() {
 									'</li>' +
 								'</ul>' +
 								/*'<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>' + */
-							'</div>' + <!--/.nav-collapse -->
+							'</div>' + //.nav-collapse
 						'</div>' +
 					'</div>' +
 				'</div>' +
