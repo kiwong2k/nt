@@ -1,3 +1,20 @@
 
 @import url("navigator.css");
 @import url("viewer.css");
+
+.iwc-subject {
+	font-size: 17px;
+	font-weight: 300;
+	line-height: 24px;
+}
+
+.iwc-from {
+	font-size: 13px;
+	line-height: 17px;
+}
+
+.iwc-content {
+	font-size: 13px;
+	line-height: 20px;
+	color: #777;
+}

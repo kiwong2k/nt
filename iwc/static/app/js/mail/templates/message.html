@@ -1,6 +1,22 @@
 <div class="iwc-mail-message" iwcng-center>
 	<div class="iwc-mail-msgheader">
-		Header
+		<div class="inline-block">
+			<div class="iwc-subject iwc-ellipsis">
+				{{msg.subject}}
+			</div>
+			<div class="iwc-from iwc-ellipsis">
+				{{msg.from}}
+			</div>
+			<div class="iwc-to iwc-ellipsis">
+				{{msg.to}}
+			</div>
+			<div class="iwc-cc iwc-ellipsis">
+				{{msg.cc}}
+			</div>
+			<div class="iwc-bcc iwc-ellipsis">
+				{{msg.bcc}}
+			</div>
+		</div>
 	</div>
 	<div class="iwc-mail-msgbody">
 		<div ng-bind-html-unsafe="msg.html"></div>
