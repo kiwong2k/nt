@@ -122,9 +122,12 @@ iwc.app.
 					
 					var retryLayoutCenter = function() {
 						if (directiveElement.children.length == totalChildren) {
+							if (retryCount) {
+								console.log("--> layoutCenter: children are ready ", directiveElement, pane, element);	
+							}
 							_this.layoutCenterNow(pane, element);
 						} else if (retryCount < 100) {
-							console.error("layoutCenter not all children are ready, retryCount ", retryCount, directiveElement, pane, element);							
+							console.log("<!-- layoutCenter: not all children are ready, retryCount ", retryCount, directiveElement, pane, element);							
 							$timeout(retryLayoutCenter, 50);
 							retryCount++;
 						}
