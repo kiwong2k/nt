@@ -11,6 +11,10 @@
 	border: 1px solid beige;
 }
 
+.iwc-mail-message {
+	overflow: auto;
+}
+
 .iwc-mail-msgheader {
 	height: 50px;
 	border: 1px solid black;

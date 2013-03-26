@@ -35,13 +35,13 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 			"subject": "Please preview Confluence 5!",
 			"date": "05 Mar 2013 11:31:09",
 			"shortText": "Hi, I have made Confluence v5.0.3 available on sandbox http://sc11136364.us.oracle.com/dashboard.action ; This release has *New Look, Feel *and *Flow!***",
-			"html":   '<body text="#000000" bgcolor="#FFFFFF">' +
+			"html":   '<div text="#000000" bgcolor="#FFFFFF">' +
     '<font face="Calibri">Hi,<br>' +
       '<br>' +
       'I have made Confluence v5.0.3 </font><font face="Calibri"><font' +
-        'face="Calibri">available </font>on sandbox </font><font' +
-      'face="Calibri"><font face="Calibri"><a' +
-          'class="moz-txt-link-freetext"' +
+        ' face="Calibri">available </font>on sandbox </font><font' +
+      ' face="Calibri"><font face="Calibri"><a ' +
+          'class="moz-txt-link-freetext" ' +
           'href="http://sc11136364.us.oracle.com/dashboard.action">http://sc11136364.us.oracle.com/dashboard.action</a>' +
            ' ; This release </font>has <b>New Look, Feel </b>and <b>Flow!</b><b>' +
       '</b><br>' +
@@ -55,10 +55,11 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
     '<br>' +
     '<font face="Calibri"><font face="Calibri">Thanks in advance!<br>' +
         '<br>' +
-      '</font></font><font face="Calibri"><a href="http://www.atlassian.com/en/software/confluence/whats-new-iframe/50#"' +
+      '</font></font><font face="Calibri">' + 
+		'<a href="http://www.atlassian.com/en/software/confluence/whats-new-iframe/50#" ' +
         'class="next">Take a Quick Tour of the New Features</a></font><br>' +
     '<font face="Calibri">' +
-        'href="http://www.atlassian.com/software/confluence/whats-new">What is' +
+        '<a href="http://www.atlassian.com/software/confluence/whats-new">What is' +
         'New</a></font><br>' +
     '<font face="Calibri"> </font><font face="Calibri"><i><br>' +
         'Note: </i><i><br>' +
@@ -69,7 +70,7 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
         '--<br>' +
         'Dilip</i><i><br>' +
       '</i><i> </i><i> </i></font>' +
-  '</body>' 
+	  '</div>'
 
 		},
 		{
@@ -78,7 +79,7 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 			"subject": "Convergence Demo",
 			"date": "04 Mar 2013 07:20:23",
 			"shortText": "this is a demo",
-			"html": "this is a demo"
+			"html": "<h2>this is a demo</h2>"
 
 		},
 		{
@@ -104,8 +105,10 @@ function IwcMailViewerCtrl($scope) {
 	
 	$scope.panels = [
 		{"template": 'js/mail/templates/viewerbar.html', "selected": true},
-		{"template": 'js/mail/templates/msgheader.html', "selected": true},
-		{"template": 'js/mail/templates/msgbody.html', "selected": true}
+		//{"template": 'js/mail/templates/msgheader.html', "selected": true},
+		//{"template": 'js/mail/templates/msgbody.html', "selected": true}
+		{"template": 'js/mail/templates/message.html', "selected": true}
+		
 	]
 	
 	$scope.$on('MailViewerCtrl-SelectMsg', function(event, msg) {
