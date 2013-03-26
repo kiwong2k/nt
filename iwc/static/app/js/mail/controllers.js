@@ -33,7 +33,8 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 			"from": "Dilip Mahadevappa <dilip.m@oracle.com>",
 			"To": "convergence scrum <cgbu-ucs-conv-scrum_ww@oracle.com>",
 			"subject": "Please preview Confluence 5!",
-			"date": "05 Mar 2013 11:31:09",
+			"size": 1866,
+			"date": 1361833284,
 			"shortText": "Hi, I have made Confluence v5.0.3 available on sandbox http://sc11136364.us.oracle.com/dashboard.action ; This release has *New Look, Feel *and *Flow!***",
 			"html":   '<div text="#000000" bgcolor="#FFFFFF">' +
     '<font face="Calibri">Hi,<br>' +
@@ -77,7 +78,8 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 			"uid": 2,
 			"from": "ki.wong@oracle.com",
 			"subject": "Convergence Demo",
-			"date": "04 Mar 2013 07:20:23",
+			"size": 2793,
+			"date": 1359586362,
 			"shortText": "this is a demo",
 			"html": "<h2>this is a demo</h2>"
 
@@ -86,7 +88,8 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 			"uid": 3,
 			"from": "ki.wong@oracle.com",
 			"subject": "American Idol Season 12",
-			"date": "04 Mar 2013 07:20:23",
+			"size": 43134,
+			"date": 1359407195,
 			"shortText": "Hello, this is season 12 of American Idol, the America most watched singing contest.",
 			"html": "Hello, this is season 12 of American Idol, the America most watched singing contest."
 

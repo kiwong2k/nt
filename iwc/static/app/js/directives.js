@@ -95,7 +95,7 @@ iwc.app.
 						});
 					}
 				}
-
+			
 				this.layoutCenterNow = function(pane, element) {
 					if (ltr) {
 						this.left2Right();
@@ -117,25 +117,20 @@ iwc.app.
 			
 				this.layoutCenter = function(pane, element) {
 					totalChildren++;
+					var retryCount = 0;
+					var _this = this;
 					
-					if (directiveElement.children.length != totalChildren) {
-						var retryCount = 0;
-						console.error("layoutCenter not all children are ready, retryCount=", retryCount, directiveElement, pane, element);
-						
-						var retryLayoutCenter = function() {
-							if (directiveElement.children.length == totalChildren) {
-								console.error("layoutCenter not all children are ready, retryCount ", retryCount, directiveElement, pane, element);
-								this.layoutCenterNow(pane, element);
-							} else if (retryCount < 100) {
-								$timeout(retryLayoutCenter, 50);
-								retryCount++;
-							}
+					var retryLayoutCenter = function() {
+						if (directiveElement.children.length == totalChildren) {
+							_this.layoutCenterNow(pane, element);
+						} else if (retryCount < 100) {
+							console.error("layoutCenter not all children are ready, retryCount ", retryCount, directiveElement, pane, element);							
+							$timeout(retryLayoutCenter, 50);
+							retryCount++;
 						}
-						$timeout(retryLayoutCenter, 50);
-					} else {
-						this.layoutCenterNow(pane, element);
 					}
-								
+					retryLayoutCenter(pane, element);
+		
 				}
 
 
