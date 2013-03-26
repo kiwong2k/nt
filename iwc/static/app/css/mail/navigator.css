@@ -21,6 +21,10 @@
 	border: 3px solid royalblue;
 }
 
+.iwc-msglist .iwc-subject {
+	margin-left: 21px;
+}
+
 .iwc-msg {
 	min-height: 68px;
 	border: 1px #f5f5f5 solid;

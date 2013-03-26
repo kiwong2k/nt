@@ -109,7 +109,7 @@ function IwcMailViewerCtrl($scope) {
 		
 	]
 	
-	$scope.$on('MailViewerCtrl-SelectMsg', function(event, msg) {
+	$scope.$on('iwc-MailMessageSelected', function(event, msg) {
 		$scope.msg = msg;
 	});
 	

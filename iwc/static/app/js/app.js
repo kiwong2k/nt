@@ -17,7 +17,7 @@ iwc.app.directive('banner', function() {
 		scope: true,
 		controller: function($scope, $element, $rootScope) {
 			$scope.select = function(panel) {
-				$rootScope.$broadcast('iwcServiceCtrl-selectPanel', panel);
+				$rootScope.$broadcast('iwc-SelectServicePanel', panel);
 			}
 		},
 		template:

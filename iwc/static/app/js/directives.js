@@ -11,33 +11,39 @@ iwc.app.
 				$(element).css('height', '100%');
 				$(element).css('position', 'relative');
 			},
-			controller: function($scope, $element) {
+			controller: function($scope, $element, $timeout) {
 				var lefts = [], rights = [], tops = [], bottoms = [], centers = [];
 				var marginLeft = 0, marginRight = 0, marginTop = 0,  marginBottom = 0;
 				var ltr = undefined;
+				var totalChildren = 0;
+				var directiveElement = $element[0];
 
 				this.layoutTop = function(pane, element) {
 					console.log("layoutTop", pane, element);
 					tops.push(element);
 					ltr = !!ltr;
+					totalChildren++;
 				}
 
 				this.layoutBottom = function(pane, element) {
 					console.log("layoutTop", pane, element);
 					bottoms.push(element);
 					ltr = !!ltr;
+					totalChildren++;
 				}
 
 				this.layoutLeft = function(pane, element) {
 					console.log("layoutLeft", pane, element);
 					lefts.push(element);
 					ltr = (ltr === undefined) ? true : ltr;
+					totalChildren++;
 				}
 
 				this.layoutRight = function(pane, element) {
 					console.log("layoutRight", pane);
 					rights.push(element);
 					ltr = (ltr === undefined) ? true : ltr;
+					totalChildren++;
 				}
 
 				this.left2Right = function() {
@@ -90,8 +96,7 @@ iwc.app.
 					}
 				}
 
-
-				this.layoutCenter = function(pane, element) {
+				this.layoutCenterNow = function(pane, element) {
 					if (ltr) {
 						this.left2Right();
 						this.top2Bottom();
@@ -108,8 +113,29 @@ iwc.app.
 						'left': marginLeft,
 						'width': 'auto'
 					});
-					console.log("layoutCenter", pane, element);
-
+				}
+			
+				this.layoutCenter = function(pane, element) {
+					totalChildren++;
+					
+					if (directiveElement.children.length != totalChildren) {
+						var retryCount = 0;
+						console.error("layoutCenter not all children are ready, retryCount=", retryCount, directiveElement, pane, element);
+						
+						var retryLayoutCenter = function() {
+							if (directiveElement.children.length == totalChildren) {
+								console.error("layoutCenter not all children are ready, retryCount ", retryCount, directiveElement, pane, element);
+								this.layoutCenterNow(pane, element);
+							} else if (retryCount < 100) {
+								$timeout(retryLayoutCenter, 50);
+								retryCount++;
+							}
+						}
+						$timeout(retryLayoutCenter, 50);
+					} else {
+						this.layoutCenterNow(pane, element);
+					}
+								
 				}
 
 

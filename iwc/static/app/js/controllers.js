@@ -3,7 +3,7 @@
 /* Controllers */
 
 function IwcServiceCtrl($scope) {
-	$scope.$on('iwcServiceCtrl-selectPanel', function(event, panel) {
+	$scope.$on('iwc-SelectServicePanel', function(event, panel) {
 		angular.forEach($scope.panels, function(p) {
 			p.selected = false;
 		});
