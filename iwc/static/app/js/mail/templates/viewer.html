@@ -1,1 +1,5 @@
-Mail Viewer
+<div class="iwc-mail-viewer" ng-controller="IwcMailViewerCtrl" iwcng-layout >
+	<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
+		<ng-include src="panel.template"></ng-include>
+	</div>
+</div>

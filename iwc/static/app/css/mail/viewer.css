@@ -1,20 +1,22 @@
 .iwc-mail-viewer-panel {
-	width: 260px;
 	margin: 5px;
 	padding: 10px;
-	border: 3px solid green;
+	border: 3px solid red;
 }
 
-.iwc-mail-viewer .iwc-msg-header {
-	height: 100px;
+.iwc-mail-viewerbar {
+	height: 35px;
+	padding: 5px 0px;
+	background-color: #A6A6A6;
+	border: 1px solid beige;
 }
 
-.iwc-mail-viewer .iwc-msg-footer {
+.iwc-mail-msgheader {
 	height: 50px;
+	border: 1px solid black;
 }
 
-.iwc-mail-viewer .iwc-msg-body {
-	height: 100%;
-	top: 100px;
-	bottom: 50px;
+.iwc-mail-msgbody {
+	padding: 2px;
+	border: 2px solid gold;
 }

@@ -30,19 +30,59 @@ function IwcMailMsgListCtrl($scope) {
 	$scope.msgs = [
 		{
 			"uid": 1,
-			"from": "Bill Abbott <william.abbott@oracle.com>",
+			"from": "Dilip Mahadevappa <dilip.m@oracle.com>",
 			"To": "convergence scrum <cgbu-ucs-conv-scrum_ww@oracle.com>",
-			"subject": "Convergence Sprint 73 retrospective",
+			"subject": "Please preview Confluence 5!",
 			"date": "05 Mar 2013 11:31:09",
-			"text_short": "All, We will have the sprint 73 retrospective : Wed, 3/6 8:30 AM  (PT) 866 682 4770 (US) +91 8039890080 (toll) 1800 30109800 (toll free) 0008 006103103 (toll free) cc: 9088189 sc: 1793",
-			"html": 'uid message 1'
+			"shortText": "Hi, I have made Confluence v5.0.3 available on sandbox http://sc11136364.us.oracle.com/dashboard.action ; This release has *New Look, Feel *and *Flow!***",
+			"html": '<html>' +
+  '<head>' +
+    '<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">' +
+  '</head>'+
+  '<body text="#000000" bgcolor="#FFFFFF">' +
+    '<font face="Calibri">Hi,<br>' +
+      '<br>' +
+      'I have made Confluence v5.0.3 </font><font face="Calibri"><font' +
+        'face="Calibri">available </font>on sandbox </font><font' +
+      'face="Calibri"><font face="Calibri"><a' +
+          'class="moz-txt-link-freetext"' +
+          'href="http://sc11136364.us.oracle.com/dashboard.action">http://sc11136364.us.oracle.com/dashboard.action</a>' +
+           ' ; This release </font>has <b>New Look, Feel </b>and <b>Flow!</b><b>' +
+      '</b><br>' +
+      '<br>' +
+      'I request you all to take some time and check if your respective' +
+      'pages/spaces are not broken &amp; they work as expected.  <br>' +
+      '<br>' +
+      'I plan to upgrade the production on April </font><font' +
+      'face="Calibri"><font face="Calibri">6th</font>.  </font><u></u><u><font' +
+        'face="Calibri">Please get back to me by April 5th.</font></u><br>' +
+    '<br>' +
+    '<font face="Calibri"><font face="Calibri">Thanks in advance!<br>' +
+        '<br>' +
+      '</font></font><font face="Calibri"><a href="http://www.atlassian.com/en/software/confluence/whats-new-iframe/50#"' +
+        'class="next">Take a Quick Tour of the New Features</a></font><br>' +
+    '<font face="Calibri">' +
+        'href="http://www.atlassian.com/software/confluence/whats-new">What is' +
+        'New</a></font><br>' +
+    '<font face="Calibri"> </font><font face="Calibri"><i><br>' +
+        'Note: </i><i><br>' +
+      '</i><i> </i><i><br>' +
+      '</i><i> Table plug is disabled since it is licensed now.</i><i><br>' +
+      '</i><i>This instance has data up to March 2</i><i>1st</i><i>.<br>' +
+        '<br>' +
+        '--<br>' +
+        'Dilip</i><i><br>' +
+      '</i><i> </i><i> </i></font>' +
+  '</body>' +
+'</html>'
+
 		},
 		{
 			"uid": 2,
 			"from": "ki.wong@oracle.com",
 			"subject": "Convergence Demo",
 			"date": "04 Mar 2013 07:20:23",
-			"text_short": "this is a demo",
+			"shortText": "this is a demo",
 			"html": "this is a demo"
 
 		},
@@ -51,7 +91,7 @@ function IwcMailMsgListCtrl($scope) {
 			"from": "ki.wong@oracle.com",
 			"subject": "American Idol Season 12",
 			"date": "04 Mar 2013 07:20:23",
-			"text_short": "Hello, this is season 12 of American Idol, the America most watched singing contest.",
+			"shortText": "Hello, this is season 12 of American Idol, the America most watched singing contest.",
 			"html": "Hello, this is season 12 of American Idol, the America most watched singing contest."
 
 		}
@@ -59,7 +99,13 @@ function IwcMailMsgListCtrl($scope) {
 
 }
 
-function MailViewerCtrl($scope) {
+function IwcMailViewerCtrl($scope) {
+	$scope.panels = [
+		{"template": 'js/mail/templates/viewerbar.html', "selected": true},
+		{"template": 'js/mail/templates/msgheader.html', "selected": true},
+		{"template": 'js/mail/templates/msgbody.html', "selected": true}
+	]
+	
 	$scope.$on('MailViewerCtrl-SelectMsg', function(event, uid, msg) {
 		$scope.selectMsg(msg);
 	});

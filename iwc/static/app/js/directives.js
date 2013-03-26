@@ -73,7 +73,9 @@ iwc.app.
 								'right': marginRight,
 								'left': marginLeft
 							});
+							console.log(top + ", marginTop=" + marginTop + ", total tops=" + tops.length)
 							marginTop += $(top).outerHeight(true);
+
 						});
 
 						angular.forEach(bottoms, function(bottom, i) {

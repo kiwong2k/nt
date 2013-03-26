@@ -28,3 +28,9 @@ html, body {
 .iwc-main-container > div.active {
 	display: block;
 }
+
+.iwc-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
