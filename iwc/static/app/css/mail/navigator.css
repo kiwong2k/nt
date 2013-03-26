@@ -9,18 +9,18 @@
 	border: 1px black solid;
 }
 
-.iwc-mail-navigator .iwc-from {
+.iwc-mail-navigator .iwc-subject {
 	font-size: 17px;
 	font-weight: 300;
 	line-height: 24px;
 }
 
-.iwc-mail-navigator .iwc-subject {
+.iwc-mail-navigator .iwc-from {
 	font-size: 13px;
 	line-height: 17px;
 }
 
-.iwc-mail-navigator .iwcContent {
+.iwc-mail-navigator .iwc-content {
 	font-size: 13px;
 	line-height: 20px;
 	color: #777;

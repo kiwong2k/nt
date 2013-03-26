@@ -105,8 +105,6 @@ function IwcMailViewerCtrl($scope) {
 	
 	$scope.panels = [
 		{"template": 'js/mail/templates/viewerbar.html', "selected": true},
-		//{"template": 'js/mail/templates/msgheader.html', "selected": true},
-		//{"template": 'js/mail/templates/msgbody.html', "selected": true}
 		{"template": 'js/mail/templates/message.html', "selected": true}
 		
 	]
