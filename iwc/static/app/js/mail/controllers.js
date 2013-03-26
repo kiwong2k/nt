@@ -26,7 +26,7 @@ function IwcMailNavCtrl($scope) {
 }
 
 
-function IwcMailMsgListCtrl($scope) {
+function IwcMailMsgListCtrl($scope, selectMsg) {
 	$scope.msgs = [
 		{
 			"uid": 1,
@@ -35,11 +35,7 @@ function IwcMailMsgListCtrl($scope) {
 			"subject": "Please preview Confluence 5!",
 			"date": "05 Mar 2013 11:31:09",
 			"shortText": "Hi, I have made Confluence v5.0.3 available on sandbox http://sc11136364.us.oracle.com/dashboard.action ; This release has *New Look, Feel *and *Flow!***",
-			"html": '<html>' +
-  '<head>' +
-    '<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">' +
-  '</head>'+
-  '<body text="#000000" bgcolor="#FFFFFF">' +
+			"html":   '<body text="#000000" bgcolor="#FFFFFF">' +
     '<font face="Calibri">Hi,<br>' +
       '<br>' +
       'I have made Confluence v5.0.3 </font><font face="Calibri"><font' +
@@ -73,8 +69,7 @@ function IwcMailMsgListCtrl($scope) {
         '--<br>' +
         'Dilip</i><i><br>' +
       '</i><i> </i><i> </i></font>' +
-  '</body>' +
-'</html>'
+  '</body>' 
 
 		},
 		{
@@ -96,20 +91,27 @@ function IwcMailMsgListCtrl($scope) {
 
 		}
 	];
+	
+	$scope.rowClicked = function(msg) {
+		console.log("row clicked uid="+msg.uid);
+		selectMsg(msg);
+	}
 
 }
 
 function IwcMailViewerCtrl($scope) {
+	$scope.msg = {};
+	
 	$scope.panels = [
 		{"template": 'js/mail/templates/viewerbar.html', "selected": true},
 		{"template": 'js/mail/templates/msgheader.html', "selected": true},
 		{"template": 'js/mail/templates/msgbody.html', "selected": true}
 	]
 	
-	$scope.$on('MailViewerCtrl-SelectMsg', function(event, uid, msg) {
-		$scope.selectMsg(msg);
+	$scope.$on('MailViewerCtrl-SelectMsg', function(event, msg) {
+		$scope.msg = msg;
 	});
-
+	
 	$scope.selectMsg = function(msg) {
 		$scope.msg = msg;
 	}
