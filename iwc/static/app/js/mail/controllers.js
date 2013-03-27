@@ -30,6 +30,36 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 	$scope.msgs = [
 		{
 			"uid": 1,
+			"from": "ki.wong@oracle.com",
+			"subject": "Testing future",
+			"size": 2793,
+			"date": 1399313580000,
+			"shortText": "Future demo",
+			"html": "<h2>Future demo</h2>"
+
+		},	
+		{
+			"uid": 2,
+			"from": "ki.wong@oracle.com",
+			"subject": "Testing today",
+			"size": 2793,
+			"date": 1364406758488,
+			"shortText": "Today demo",
+			"html": "<h2>Today demo</h2>"
+
+		},		
+		{
+			"uid": 3,
+			"from": "ki.wong@oracle.com",
+			"subject": "Testing yesterday",
+			"size": 2793,
+			"date": 1364321580000,
+			"shortText": "yesterday demo",
+			"html": "<h2>yesterday demo</h2>"
+
+		},		
+		{
+			"uid": 4,
 			"from": "Dilip Mahadevappa <dilip.m@oracle.com>",
 			"To": "convergence scrum <cgbu-ucs-conv-scrum_ww@oracle.com>",
 			"subject": "Please preview Confluence 5!",
@@ -75,7 +105,7 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 
 		},
 		{
-			"uid": 2,
+			"uid": 5,
 			"from": "ki.wong@oracle.com",
 			"subject": "Convergence Demo",
 			"size": 2793,
@@ -85,12 +115,12 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 
 		},
 		{
-			"uid": 3,
+			"uid": 6,
 			"from": "ki.wong@oracle.com",
-			"subject": "American Idol Season 12",
+			"subject": "Last year American Idol",
 			"size": 43134,
-			"date": 1359407195000,
-			"shortText": "Hello, this is season 12 of American Idol, the America most watched singing contest.",
+			"date": 1351275180000,
+			"shortText": "Hello, this is season 11 of American Idol, the America most watched singing contest.",
 			"html": "Hello, this is season 12 of American Idol, the America most watched singing contest."
 
 		}
