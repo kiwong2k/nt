@@ -126,7 +126,7 @@ function IwcMailMsgListCtrl($scope, selectMsg) {
 		}
 	];
 	
-	$scope.rowClicked = function(msg) {
+	$scope.rowClicked = function(msg) {		
 		console.log("row clicked uid="+msg.uid);
 		selectMsg(msg);
 	}
