@@ -1,6 +1,6 @@
 <div class="iwc-msglist" ng-controller="IwcMailMsgListCtrl" iwcng-center>
 	<div class="iwc-msg" ng-repeat="msg in msgs" ng-click="rowClicked(msg)">
-		<div class="iwc-row iwc-row-hover">
+		<div class="iwc-row iwc-row-hover" ng-class-odd="'iwc-odd'">
 			<div class="inline-block">
 				<div>
 					<div class="iwc-date pull-right">{{msg.date | smartdate}}</div>
