@@ -1,0 +1,25 @@
+<div class="iwc-msglist" iwcng-center>
+	<div class="iwc-msg" ng-repeat="msg in msgs" ng-click="rowClicked(msg)">
+		<div class="iwc-row iwc-row-hover" ng-class-odd="'iwc-odd'">
+			<div class="inline-block">
+				<div>
+					<div class="iwc-date pull-right">{{msg.date | smartdate}}</div>
+					<div class="iwc-subject iwc-ellipsis">
+						{{msg.subject}}
+					</div>
+				</div>
+				<div>
+					<label class="pull-left checkbox">
+						<input type="checkbox">
+					</label>
+					<div class="iwc-from iwc-ellipsis">
+						{{msg.from}}
+					</div>
+				</div>
+				<div class="iwc-content iwc-ellipsis">
+					{{msg.shortText}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
