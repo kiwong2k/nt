@@ -19,9 +19,15 @@ function IwcMailCtrl($scope, $filter) {
 	$scope.selectedFolderDN = "< " + $scope.selectedFolder;
 	$scope.msgs = [];
 	$scope.msgsChecked = [];
+	$scope.uid = 100;
 
 	$scope.newFolder = function() {
 		alert("Compose email not yet implemented");
+	}
+
+	$scope.getMail = function() {
+		var msgs = $scope._fetchMsgs("Inbox", --$scope.uid, 1);
+		$scope.msgs = msgs.concat($scope.msgs);
 	}
 
 	$scope.rowClicked = function(msg) {
@@ -91,6 +97,6 @@ function IwcMailCtrl($scope, $filter) {
 		return msgs;
 	}
 
-	$scope.msgs = $scope._fetchMsgs("Inbox", 100, 100);
+	$scope.msgs = $scope._fetchMsgs("Inbox", $scope.uid, 300);
 
 }
