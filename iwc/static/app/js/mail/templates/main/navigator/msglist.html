@@ -10,7 +10,7 @@
 				</div>
 				<div>
 					<label class="pull-left checkbox">
-						<input type="checkbox">
+						<input type="checkbox" ng-click="checkBoxClicked(msg, $event)" ng-model="msg.isChecked">
 					</label>
 					<div class="iwc-from iwc-ellipsis">
 						{{msg.from}}
