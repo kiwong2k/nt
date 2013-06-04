@@ -1,17 +1,17 @@
 function IwcMailCtrl($scope, $filter) {
 	$scope.panels = [
-		{"template": 'js/mail/templates/navigator.html', "selected": true},
-		{"template": 'js/mail/templates/viewer.html', "selected": true}
+		{"template": 'js/mail/templates/main/navigator/navigator.html', "selected": true},
+		{"template": 'js/mail/templates/main/viewer/viewer.html', "selected": true}
 	];
 
 	$scope.navpanels = [
-		{"template": 'js/mail/templates/navbar.html', "selected": true},
-		{"template": 'js/mail/templates/msglist.html', "selected": true}
+		{"template": 'js/mail/templates/main/navigator/navbar.html', "selected": true},
+		{"template": 'js/mail/templates/main/navigator/msglist.html', "selected": true}
 	];
 
 	$scope.viewpanels = [
-		{"template": 'js/mail/templates/viewerbar.html', "selected": true},
-		{"template": 'js/mail/templates/message.html', "selected": true}
+		{"template": 'js/mail/templates/main/viewer/viewerbar.html', "selected": true},
+		{"template": 'js/mail/templates/main/viewer/message.html', "selected": true}
 	];
 	
 

@@ -18,7 +18,7 @@ function IwcServiceCtrl($scope) {
 	];
 
 	$scope.panels = [
-		{"template": 'js/mail/templates/panel.html', "title": "Mail", "selected": false},
+		{"template": 'js/mail/templates/main/panel.html', "title": "Mail", "selected": false},
 		{"template": 'js/calendar/templates/panel.html', "title": "Calendar", "selected": false},
 		{"template": 'js/addressbook/templates/panel.html', "title": "Address Book", "selected": false}
 	];
