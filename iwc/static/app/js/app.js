@@ -49,7 +49,7 @@ iwc.app.directive('banner', function() {
 												'<li><a href="#"><i class="icon-trash"></i> Delete</a></li>' +
 												'<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>' +
 												'<li class="divider"></li>' +
-												'<li><a href="#"><i class="i"></i> Make admin</a></li>' +
+												'<li><a href="#"><i class="i"></i> Sign out </a></li>' +
 											'</ul>' +
 										'</div>' +
 									'</li>' +

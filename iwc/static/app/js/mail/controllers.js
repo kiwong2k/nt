@@ -71,12 +71,14 @@ function IwcMailCtrl($scope, $filter) {
 	$scope._fetchMsgs = function(mbox, start, count) {
 		var msgs = [];
 		var uid = 0;
+		var time = (new Date()).getTime(); // in milliseconds
 		
 		for (var i=0; i<count; i++) {
 			uid = start+i;
 			msgs.push(
 				{
 					"uid": uid,
+					"date": time - i*21600000,
 					"from": "ki.wong@oracle.com",
 					"subject": "Demo msg " + uid,
 					"size": 100000 * Math.random(),
