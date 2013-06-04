@@ -26,7 +26,9 @@ function IwcMailCtrl($scope, $filter) {
 
 	$scope.rowClicked = function(msg) {
 		console.log("row Clicked");
+		if ($scope.msg) $scope.msg.isSelected = false;
 		$scope.msg = msg;
+		$scope.msg.isSelected = true;
 
 		angular.forEach($scope.msgsChecked, function(msg, i) {
 			msg.isChecked = false;
@@ -39,6 +41,7 @@ function IwcMailCtrl($scope, $filter) {
 		$event.stopPropagation();
 		if (msg.isChecked) {
 			$scope.msgsChecked.push(msg);
+			if ($scope.msg) $scope.msg.isSelected = false;
 			$scope.msg = null;
 		} else {
 			var newMsgs = $filter('filter')($scope.msgsChecked, function(m) {

@@ -18,3 +18,7 @@
 	line-height: 20px;
 	color: #777;
 }
+
+.iwc-msg .selected, .iwc-msg .selected div:hover >div {
+	background-color: #C6D7E3;
+}
