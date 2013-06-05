@@ -15,7 +15,7 @@
 <body class="iwc">
 	<div iwcng-layout>
 		<banner iwcng-top>banner</banner>
-		<div class="iwc-main-container"  iwcng-center>
+		<div class="iwc-main-container iwc-container"  iwcng-center>
 			<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
 				<ng-include src="panel.template"></ng-include>
 			</div>

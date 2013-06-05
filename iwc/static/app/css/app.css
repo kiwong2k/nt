@@ -15,17 +15,16 @@ html, body {
 	position: absolute;
 }
 
-.iwc-main-container {
-	/*border: 1px red solid;*/
-
-}
-
 .iwc-main-container > div {
-	display:  none;
+	/*border: 1px red solid;*/
 	height: 100%;
 }
 
-.iwc-main-container > div.active {
+.iwc-container > div {
+	display:  none;
+}
+
+.iwc-container > div.active {
 	display: block;
 }
 
