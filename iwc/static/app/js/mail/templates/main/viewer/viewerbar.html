@@ -4,7 +4,7 @@
 		<li><a href="#"><i class="icon-tags icon-white"></i></a></li>
 		<li><a href="#"><i class="icon-share-alt icon-white"></i></a></li>
 		<li><a href="#" ng-click="deleteMsg()"><i class="icon-trash icon-white"></i></a></li>
-		<li class="pull-right"><a href="#"><i class="icon-chevron-right icon-white"></i></a></li>
-		<li class="pull-right"><a href="#"><i class="icon-chevron-left icon-white"></i></a></li>
+		<li class="pull-right" ng-class="{disabled: isLastMsg}"><a href="#" ng-click="nextMsg()"><i class="icon-chevron-right icon-white"></i></a></li>
+		<li class="pull-right" ng-class="{disabled: isFirstMsg}"><a href="#" ng-click="prevMsg()"><i class="icon-chevron-left icon-white"></i></a></li>
     </ul>
 </div>

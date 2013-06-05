@@ -22,3 +22,7 @@
 .iwc-msg .selected, .iwc-msg .selected div:hover >div {
 	background-color: #C6D7E3;
 }
+
+.iwc-mail-viewerbar .disabled {
+	opacity: 0.25;
+}

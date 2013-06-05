@@ -2,7 +2,7 @@
 
 
 <div class="iwc-msglist" iwcng-center>
-	<div class="iwc-msg" ng-repeat="msg in msgs" ng-click="rowClicked(msg)">
+	<div class="iwc-msg" ng-repeat="msg in msgs" ng-click="rowClicked(msg, $index)">
 		<div class="iwc-row iwc-row-hover" ng-class-odd="'iwc-odd'" ng-class="{selected: msg.isChecked || msg.isSelected}">
 			<div class="inline-block">
 				<div>

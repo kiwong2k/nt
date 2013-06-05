@@ -58,6 +58,18 @@ function IwcMailCtrl($scope, $filter) {
 		});
 	}
 
+	$scope._setMsg = function(index) {
+		if (index >=0 && index <= $scope.msgs.length-1) {
+			$scope.isFirstMsg = (index == 0);
+			$scope.isLastMsg = (index == ($scope.msgs.length-1));
+			$scope.msgIndex = index;
+
+			if ($scope.msg) $scope.msg.isSelected = false;
+			$scope.msg = $scope.msgs[index];
+			$scope.msg.isSelected = true;
+		}
+	}
+
 
 	//
 	// private functions end here
@@ -73,18 +85,18 @@ function IwcMailCtrl($scope, $filter) {
 		$scope.msgs = msgs.concat($scope.msgs);
 	}
 
-	$scope.rowClicked = function(msg) {
-		console.log("row Clicked");
-		if ($scope.msg) $scope.msg.isSelected = false;
-		$scope.msg = msg;
-		$scope.msg.isSelected = true;
-
+	$scope.rowClicked = function(msg, index) {
+		console.log("row " + index + " clicked");
+		
 		angular.forEach($scope.msgsChecked, function(msg, i) {
 			msg.isChecked = false;
 		});
 		$scope.msgsChecked = [];
 
 		$scope._showPanels($scope.viewpanels, ["viewerbar.html", "message.html"]);
+
+		$scope._setMsg(index);
+
 	}
 	
 	$scope.checkBoxClicked = function(msg, $event) {
@@ -121,6 +133,14 @@ function IwcMailCtrl($scope, $filter) {
 		$scope.msgsChecked = [];
 
 		$scope._showPanels($scope.viewpanels, ["notice.html"]);
+	}
+
+	$scope.prevMsg = function() {
+		$scope._setMsg($scope.msgIndex - 1);
+	}
+
+	$scope.nextMsg = function() {
+		$scope._setMsg($scope.msgIndex + 1);
 	}
 
 	// public functions end here
