@@ -44,6 +44,7 @@ function IwcMailCtrl($scope, $filter) {
 
 	$scope._showPanels = function(arr, names) {
 		function _showPanel(arr, name) {
+			name = '/' + name;
 			angular.forEach(arr, function(p) {
 				p.selected = p.selected || (p.template.indexOf(name) != -1);
 			});
