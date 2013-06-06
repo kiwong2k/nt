@@ -1,4 +1,4 @@
-function IwcMailCtrl($scope, $filter) {
+function IwcMailCtrl($scope, $filter, $dialog) {
 	$scope.panels = [
 		{"template": 'js/mail/templates/main/navigator/navigator.html', "selected": true},
 		{"template": 'js/mail/templates/main/viewer/viewer.html', "selected": true}
@@ -15,6 +15,10 @@ function IwcMailCtrl($scope, $filter) {
 		{"template": 'js/mail/templates/main/viewer/chkboxnotice.html', "selected": false},
 		{"template": 'js/mail/templates/main/viewer/message.html', "selected": false}
 	];
+
+	$scope.composepanels = [
+		{"template": 'js/mail/templates/dialog/compose/compose.html', "selected": true, "controller": 'ComposeDialog'}
+	];
 	
 	//
 	// private functions start here
@@ -29,7 +33,7 @@ function IwcMailCtrl($scope, $filter) {
 			msgs.push(
 				{
 					"uid": uid,
-					"date": time - i*21600000,
+					"date": time - i*18000000,
 					"from": "ki.wong@oracle.com",
 					"subject": "Demo msg " + uid,
 					"size": 100000 * Math.random(),
@@ -76,8 +80,30 @@ function IwcMailCtrl($scope, $filter) {
 	//
 
 	// public functions start here
-	$scope.newFolder = function() {
-		alert("Compose email not yet implemented");
+	 var t = '<div class="modal-header">'+
+          '<h1>This is the title</h1>'+
+          '</div>'+
+          '<div class="modal-body">'+
+          '<p>Enter a value to pass to <code>close</code> as the result: <input ng-model="result" /></p>'+
+          '</div>'+
+          '<div class="modal-footer">'+
+          '<button ng-click="close(result)" class="btn btn-primary" >Close</button>'+
+          '</div>';
+
+	$scope.composeMail = function() {
+		var d = $dialog.dialog(
+			{ 
+				backdrop: true,
+				keyboard: true,
+				backdropClick: false,
+				templateUrl: $scope.composepanels[0].template,
+				//template: t,
+				controller: $scope.composepanels[0].controller
+			}
+		);
+		d.open().then(function(result) {
+			alert('dialog closed with result: ' + result);
+		});
 	}
 
 	$scope.getMail = function() {
@@ -143,6 +169,8 @@ function IwcMailCtrl($scope, $filter) {
 		$scope._setMsg($scope.msgIndex + 1);
 	}
 
+	
+
 	// public functions end here
 
 	// initializations
@@ -154,3 +182,4 @@ function IwcMailCtrl($scope, $filter) {
 	$scope.msgsChecked = [];
 
 }
+
