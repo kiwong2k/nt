@@ -124,10 +124,9 @@ function IwcMailCtrl($scope, $filter, $dialog) {
 		$scope._setMsg(index);
 
 	}
-	
-	$scope.checkBoxClicked = function(msg, $event) {
-		console.log("checkbox Clicked: " + msg.isChecked);
-		$event.stopPropagation();
+
+	$scope.checkBoxChanged = function(msg) {
+		console.log("checkbox changed", msg.isChecked);
 		if (msg.isChecked) {
 			$scope.msgsChecked.push(msg);
 			if ($scope.msg) $scope.msg.isSelected = false;
@@ -139,8 +138,15 @@ function IwcMailCtrl($scope, $filter, $dialog) {
 			$scope.msgsChecked = newMsgs;
 		}
 
-		$scope._showPanels($scope.viewpanels, ["viewerbar.html", "chkboxnotice.html"]);
-		
+		$scope._showPanels($scope.viewpanels, ["viewerbar.html", "chkboxnotice.html"]);		
+	}
+	
+	//
+	// 1.2.0 rc-3 has a bug that checkbox ng-model is not updated in ng-click event
+	// so add ng-change together with ng-click for now
+	$scope.checkBoxClicked = function(msg, $event) {
+		console.log("checkbox Clicked: " + msg.isChecked);
+		$event.stopPropagation();
 	}
 	
 	$scope.deleteMsg = function() {

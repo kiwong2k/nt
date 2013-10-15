@@ -19,28 +19,28 @@ iwc.app.
 				var directiveElement = $element[0];
 
 				this.layoutTop = function(pane, element) {
-					console.log("layoutTop", pane, element);
+					//console.log("layoutTop", pane, element);
 					tops.push(element);
 					ltr = !!ltr;
 					totalChildren++;
 				}
 
 				this.layoutBottom = function(pane, element) {
-					console.log("layoutTop", pane, element);
+					//console.log("layoutTop", pane, element);
 					bottoms.push(element);
 					ltr = !!ltr;
 					totalChildren++;
 				}
 
 				this.layoutLeft = function(pane, element) {
-					console.log("layoutLeft", pane, element);
+					//console.log("layoutLeft", pane, element);
 					lefts.push(element);
 					ltr = (ltr === undefined) ? true : ltr;
 					totalChildren++;
 				}
 
 				this.layoutRight = function(pane, element) {
-					console.log("layoutRight", pane);
+					//console.log("layoutRight", pane);
 					rights.push(element);
 					ltr = (ltr === undefined) ? true : ltr;
 					totalChildren++;
@@ -79,7 +79,7 @@ iwc.app.
 								'right': marginRight,
 								'left': marginLeft
 							});
-							console.log(top + ", marginTop=" + marginTop + ", total tops=" + tops.length)
+							//console.log(top + ", marginTop=" + marginTop + ", total tops=" + tops.length)
 							marginTop += $(top).outerHeight(true);
 
 						});
@@ -123,11 +123,11 @@ iwc.app.
 					var retryLayoutCenter = function() {
 						if (directiveElement.children.length == totalChildren) {
 							if (retryCount) {
-								console.log("--> layoutCenter: children are ready ", directiveElement, pane, element);	
+								//console.log("--> layoutCenter: children are ready ", directiveElement, pane, element);	
 							}
 							_this.layoutCenterNow(pane, element);
 						} else if (retryCount < 100) {
-							console.log("<!-- layoutCenter: not all children are ready, retryCount ", retryCount, directiveElement, pane, element);							
+							//console.log("<!-- layoutCenter: not all children are ready, retryCount ", retryCount, directiveElement, pane, element);							
 							$timeout(retryLayoutCenter, 50);
 							retryCount++;
 						}
@@ -191,3 +191,20 @@ iwc.app.
 		};
 	})
 
+iwc.app.directive('ngBindHtmlUnsafe', ['$sce', function($sce) {
+    return {
+        scope: {
+            ngBindHtmlUnsafe: '=',
+        },
+        template: "<div ng-bind-html='trustedHtml'></div>",
+        link: function($scope, iElm, iAttrs, controller) {
+            $scope.updateView = function() {
+                $scope.trustedHtml = $sce.trustAsHtml($scope.ngBindHtmlUnsafe);
+            }
+
+            $scope.$watch('ngBindHtmlUnsafe', function(newVal, oldVal) {
+                $scope.updateView(newVal);
+            });
+        }
+    };
+}]);

@@ -2,7 +2,7 @@
 
 
 <div class="iwc-msglist" iwcng-center>
-	<div class="iwc-msg" ng-repeat="msg in msgs" ng-click="rowClicked(msg, $index)">
+	<div class="iwc-msg" ng-repeat="msg in msgs" ng-click="rowClicked(msg, $index, $event)">
 		<div class="iwc-row iwc-row-hover" ng-class-odd="'iwc-odd'" ng-class="{selected: msg.isChecked || msg.isSelected}">
 			<div class="inline-block">
 				<div>
@@ -13,7 +13,7 @@
 				</div>
 				<div>
 					<label class="pull-left checkbox">
-						<input type="checkbox" ng-click="checkBoxClicked(msg, $event)" ng-model="msg.isChecked">
+						<input type="checkbox" ng-model="msg.isChecked"  ng-click="checkBoxClicked(msg, $event)" ng-change="checkBoxChanged(msg, $event)">
 					</label>
 					<div class="iwc-from iwc-ellipsis">
 						{{msg.from}}
@@ -25,4 +25,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>k
