@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title>Convergence</title>
+
+	<link rel="stylesheet" href="css/app.css"/>
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
+
+
+</head>
+<body class="iwc">
+	<div ng-submit="login()" ng-controller="LoginCtrl as loginCtrl">
+		<div>
+			<label for="username">Username:</label>
+			<input name="username" type="text" ng-model="loginCtrl.userName" ng-change="loginCtrl.dataChanged()" aria-required="true"/>
+		</div>
+		<div>
+			<label for="password">Password:</label>
+			<input name="password" type="password" ng-model="loginCtrl.password" ng-change="loginCtrl.dataChanged()" aria-required="true"/>
+		</div>
+
+		<div>
+			<input type="submit" value="Sign in" ng-disabled="loginCtrl.isDisabled"/>
+		</div>
+			
+	</div>
+
+<!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-sanitize.js"></script>
+	<script src="lib/angular-ui/ui-bootstrap-tpls-0.3.0.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="js/iwc/app.js"></script>
+	<script src="js/iwc/controllers/login.js"></script>
+	<script src="js/iwc/services/services.js"></script>
+
+</body>
+</html>
+

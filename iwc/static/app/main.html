@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="myApp" ng-controller="IwcServiceCtrl">
+<head>
+	<meta charset="utf-8">
+	<title>Convergence</title>
+
+	
+	<link rel="stylesheet" href="css/app.css"/>
+	<link rel="stylesheet" href="css/banner.css"/>
+	<link rel="stylesheet" href="css/mail/mail.css"/>
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
+
+
+</head>
+<body class="iwc">
+	<div iwcng-layout>
+		<banner iwcng-top>banner</banner>
+		<div class="iwc-main-container iwc-container"  iwcng-center>
+			<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
+				<ng-include src="panel.template"></ng-include>
+			</div>
+		</div>
+	</div>
+
+<!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-sanitize.js"></script>
+	<script src="lib/angular-ui/ui-bootstrap-tpls-0.3.0.js"></script>
+	<script src="js/iwc/app.js"></script>
+	<script src="js/iwc/services/services.js"></script>
+	<script src="js/iwc/controllers/controllers.js"></script>
+	<script src="js/iwc/filters/filters.js"></script>
+	<script src="js/iwc/directives/directives.js"></script>
+	<script src="js/mail/mail.js"></script>
+	<script src="js/mail/services.js"></script>
+	<script src="js/mail/controllers.js"></script>
+	<script src="js/mail/ComposeDialog.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
+
