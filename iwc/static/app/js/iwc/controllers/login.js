@@ -2,12 +2,20 @@
 
 /* Controllers */
 
-function LoginCtrl() {
+function LoginCtrl(iwcp) {
 
 	this.dataChanged = function() {
 		this.isDisabled = !(this.userName && this.password);
 	}
 
+	this.login = function() {
+		console.log("LoginCtrl::login", this.userName, this.password)
+	}
+
+	console.log("LoginCtrl starts")
+
 	this.dataChanged();
+
+	iwcp.login();
 
 }
