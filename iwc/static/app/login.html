@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" >
 <head>
 	<meta charset="utf-8">
 	<title>Convergence</title>
@@ -10,7 +10,7 @@
 
 </head>
 <body class="iwc">
-	<div ng-submit="login()" ng-controller="LoginCtrl as loginCtrl">
+	<form ng-submit="loginCtrl.login()" ng-controller="LoginCtrl as loginCtrl">
 		<div>
 			<label for="username">Username:</label>
 			<input name="username" type="text" ng-model="loginCtrl.userName" ng-change="loginCtrl.dataChanged()" aria-required="true"/>
@@ -24,7 +24,7 @@
 			<input type="submit" value="Sign in" ng-disabled="loginCtrl.isDisabled"/>
 		</div>
 			
-	</div>
+	</form>
 
 <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
@@ -37,7 +37,8 @@
 
 	<script src="js/iwc/app.js"></script>
 	<script src="js/iwc/controllers/login.js"></script>
-	<script src="js/iwc/services/services.js"></script>
+	<script src="js/iwc/services/iwcp.js"></script>
+
 
 </body>
 </html>
