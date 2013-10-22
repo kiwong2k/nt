@@ -10,12 +10,13 @@ function LoginCtrl(iwcp) {
 
 	this.login = function() {
 		console.log("LoginCtrl::login", this.userName, this.password)
+		iwcp.login({'username': this.userName, 'password': this.password});
 	}
 
 	console.log("LoginCtrl starts")
 
 	this.dataChanged();
 
-	iwcp.login(angular.toJson(angular.element('loginForm')));
+	iwcp.preLogin();
 
 }

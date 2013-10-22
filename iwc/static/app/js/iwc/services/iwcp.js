@@ -2,20 +2,37 @@
 
 /* Services */
 iwc.app.service('iwcp', function($http) {
-
-	// param: {'username': user, 'password': password}
-	this.login = function(param) {
-		console.log('iwcp::login');
+	this.preLogin = function() {
+		console.log('iwcp::preLogin');
 
 		$http.post(
-				"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc", // url
-				param).
+				"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/prelogin.iwc" // url
+				).
 			success(function(data, status) {
 
 			}).
 			error(function(data, status) {
 
 			});
+
+	}
+
+	// param: {'username': user, 'password': password}
+	this.login = function(param) {
+		console.log('iwcp::login');
+
+		$http( {
+			method: 'POST',
+			url: 'http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc', // url
+			data:   $.param(param),
+			headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+		}).
+		success(function(data, status) {
+
+		}).
+		error(function(data, status) {
+
+		});
 
 	}
 
