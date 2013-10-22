@@ -1,38 +1,61 @@
 'use strict';
 
 /* Services */
-iwc.app.service('iwcp', function($http) {
+iwc.app.service('iwcp', function($http, $q) {
+	this._serializeParams = function(param) {
+		param = param || {};
+		param['fmt-out'] = 'text/json';	// additional param
+		return $.param(param);
+	}
+
 	this.preLogin = function() {
 		console.log('iwcp::preLogin');
 
 		$http.post(
-				"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/prelogin.iwc" // url
-				).
-			success(function(data, status) {
-
-			}).
-			error(function(data, status) {
-
-			});
-
-	}
-
-	// param: {'username': user, 'password': password}
-	this.login = function(param) {
-		console.log('iwcp::login');
-
-		$http( {
-			method: 'POST',
-			url: 'http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc', // url
-			data:   $.param(param),
-			headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
-		}).
+			//"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/prelogin.iwc" // url
+			"/iwc/svc/iwcp/prelogin.iwc" // url
+		).
 		success(function(data, status) {
 
 		}).
 		error(function(data, status) {
 
 		});
+	}
+
+	// param: {'username': user, 'password': password}
+	this.login = function(param) {
+		console.log('iwcp::login');
+		var deferred = $q.defer();
+
+		$http.post(
+			//'http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc', // url
+			'/iwc/svc/iwcp/login.iwc', // url
+			this._serializeParams(param),
+			{headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}}
+		).
+		success(function(data, status) {
+			var errno = parseInt(data.iwcp['error-code']);
+			if (errno == 0) {
+				console.log('iwcp::login succeeded');
+				deferred.resolve(data);
+			} else {
+				console.log('iwcp::login failed', errno);
+				var error = new Error(data.iwcp["message"]);
+				error.errno = parseInt(errno);
+				if(error.errno==1101 || error.errno==18)
+				   error.gotoURL = data.iwcp["gotoUrl"]
+				//return $q.reject(error);
+				deferred.reject(error);
+			}
+		}).
+		error(function(data, status) {
+			console.log('iwcp::login failed');
+			deferred.reject(data);
+			//return $q.reject(data);
+		});
+
+		return deferred.promise;
 
 	}
 
