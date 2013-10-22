@@ -10,7 +10,7 @@
 
 </head>
 <body class="iwc">
-	<form ng-submit="loginCtrl.login()" ng-controller="LoginCtrl as loginCtrl">
+	<form name="loginForm" ng-submit="loginCtrl.login()" ng-controller="LoginCtrl as loginCtrl">
 		<div>
 			<label for="username">Username:</label>
 			<input name="username" type="text" ng-model="loginCtrl.userName" ng-change="loginCtrl.dataChanged()" aria-required="true"/>

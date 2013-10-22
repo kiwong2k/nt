@@ -16,6 +16,6 @@ function LoginCtrl(iwcp) {
 
 	this.dataChanged();
 
-	iwcp.login();
+	iwcp.login(angular.toJson(angular.element('loginForm')));
 
 }

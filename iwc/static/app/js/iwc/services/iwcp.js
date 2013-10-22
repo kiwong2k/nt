@@ -1,10 +1,22 @@
 'use strict';
 
 /* Services */
-iwc.app.service('iwcp', function($compile) {
+iwc.app.service('iwcp', function($http) {
 
-	this.login = function() {
-			console.log('iwcp::login');
+	// param: {'username': user, 'password': password}
+	this.login = function(param) {
+		console.log('iwcp::login');
+
+		$http.post(
+				"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc", // url
+				param).
+			success(function(data, status) {
+
+			}).
+			error(function(data, status) {
+
+			});
+
 	}
 
 /*
