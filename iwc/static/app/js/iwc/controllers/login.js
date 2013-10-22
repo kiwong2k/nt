@@ -13,7 +13,7 @@ function LoginCtrl(iwcp, $window) {
 		iwcp.login({'username': this.userName, 'password': this.password}).
 			then(function(result) {
 				console.log('LoginCtrl::login succeeded');
-				$window.location = "/nt/iwc/static/app/main.html";
+				$window.location = "/iwc_static/main.html";
 			}, function(result) {
 				console.log('LoginCtrl::login failed');
 			});
