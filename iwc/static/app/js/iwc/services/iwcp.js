@@ -1,63 +1,111 @@
 'use strict';
 
 /* Services */
-iwc.app.service('iwcp', function($http, $q) {
+iwc.app.service('iwcp', function($http, $q, $cookies) {
+	this._unescapeSenderIdentity = function(prefs) {
+
+		// The following function is copied from iwc.datastruct.VCard._unescape_crlf
+		// and rewritten using string.replace
+		// this is intentionally be a local function
+		var unescape_crlf_for_uwc = function(str) {
+			if(!str) return '';
+			var res = str.replace(/\$/g, '<br/>')
+					.replace(/\\24/g, '$')
+					.replace(/\\3a/g, ':')
+					.replace(/\\22/g, '"')
+					.replace(/\\7c/g, '|')
+					.replace(/\\25/g, '%')
+					.replace(/\\5e/g, '^')
+					.replace(/\\28/g, '(')
+					.replace(/\\29/g, ')')
+					.replace(/\\5c/g, '\\');
+
+			return res;
+		}
+
+		if (prefs.user_prefs.senderidentities) {
+			angular.forEach(prefs.user_prefs.senderidentities.identity, function(identity) {
+				if (identity.signature)
+					identity.signature = unescape_crlf_for_uwc(identity.signature);
+			});
+		}
+
+		return prefs;
+	}
+
 	this._serializeParams = function(param) {
 		param = param || {};
 		param['fmt-out'] = 'text/json';	// additional param
+		var token = $cookies['iwc-auth'].replace(/(^token=|.*?:token=)([^:]*)(.*)/i, '$2')
+		if (token != $cookies['iwc-auth'])
+			param['token'] = token;
 		return $.param(param);
 	}
 
-	this.preLogin = function() {
-		console.log('iwcp::preLogin');
-
-		$http.post(
-			//"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/prelogin.iwc" // url
-			"/iwc/svc/iwcp/prelogin.iwc" // url
-		).
-		success(function(data, status) {
-
-		}).
-		error(function(data, status) {
-
-		});
-	}
-
-	// param: {'username': user, 'password': password}
-	this.login = function(param) {
-		console.log('iwcp::login');
+	this._postRequest = function(url, param) {
 		var deferred = $q.defer();
 
 		$http.post(
-			//'http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc', // url
-			'/iwc/svc/iwcp/login.iwc', // url
+			url, // url
 			this._serializeParams(param),
 			{headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}}
 		).
 		success(function(data, status) {
 			var errno = parseInt(data.iwcp['error-code']);
 			if (errno == 0) {
-				console.log('iwcp::login succeeded');
+				console.log('iwcp::_postRequest succeeded', url);
 				deferred.resolve(data);
 			} else {
-				console.log('iwcp::login failed', errno);
+				console.log('iwcp::_postRequest failed', errno, url);
 				var error = new Error(data.iwcp["message"]);
 				error.errno = parseInt(errno);
-				if(error.errno==1101 || error.errno==18)
-				   error.gotoURL = data.iwcp["gotoUrl"]
+				if (error.errno==1101 || error.errno==18)
+					error.gotoURL = data.iwcp["gotoUrl"]
 				//return $q.reject(error);
 				deferred.reject(error);
 			}
 		}).
 		error(function(data, status) {
-			console.log('iwcp::login failed');
+			console.log('iwcp::_postRequest failed', url);
 			deferred.reject(data);
 			//return $q.reject(data);
 		});
 
-		return deferred.promise;
-
+		return deferred.promise;		
 	}
+
+	this.preLogin = function() {
+		console.log('iwcp::preLogin');
+
+		return this._postRequest(
+			//"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/prelogin.iwc" // url
+			"/iwc/svc/iwcp/prelogin.iwc" // url
+		);
+	}
+
+	// param: {'username': user, 'password': password}
+	this.login = function(param) {
+		console.log('iwcp::login');
+
+		return this._postRequest(
+			//'http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc', // url
+			'/iwc/svc/iwcp/login.iwc', // url
+			param
+		);
+	}
+
+	this.getAllPrefs = function() {
+		console.log('iwcp::login');
+
+		var _this = this;
+		return this._postRequest(
+			'/iwc/svc/iwcp/get_allprefs.iwc' // url
+		).then(function(data) {
+			return _this._unescapeSenderIdentity(data.iwcp.preferences);
+		});
+	}
+
+});
 
 /*
 	this.preLogin = function() {
@@ -557,5 +605,5 @@ iwc.app.service('iwcp', function($http, $q) {
 		return prefs;
 	}
 
-	*/
 });
+*/

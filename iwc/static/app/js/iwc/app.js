@@ -1,7 +1,7 @@
 'use strict';
 
 var iwc = {};
-iwc.app = angular.module('myApp', ['ngSanitize', 'ui.bootstrap']);
+iwc.app = angular.module('myApp', ['ngSanitize', 'ngCookies', 'ui.bootstrap']);
 	/*
 	 config(function($routeProvider) {
 	 $routeProvider.

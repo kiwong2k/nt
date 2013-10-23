@@ -1,31 +1,42 @@
 'use strict';
 
 /* Controllers */
-
-function IwcServiceCtrl($scope) {
+function IwcAppCtrl($scope, $cacheFactory, iwcp, iwcprefs) {
+	
 	$scope.$on('iwc-SelectServicePanel', function(event, panel) {
 		angular.forEach($scope.panels, function(p) {
 			p.selected = false;
 		});
 		panel.selected = true;
 	});
+	
+	// return a promise
+	this.bootstrap = function() {
+		console.log("IwcAppCtrl::bootstrap");
+		return iwcp.getAllPrefs().
+			then(function(result) {
+				console.log('IwcAppCtrl::bootstrap succeeded');
+				iwcprefs.put(result);
+				
+				//_loadApp(iwcprefs.get('user_prefs.general.defaultapp'));
 
 
-	$scope.services = [
-		{"ctrl":"MailCtrl", "title":"Mail"},
-		{"ctrl":"CalCtrl",  "title":"Calendar"},
-		{"ctrl":"AbsCtrl",  "title":"Address Book"}
-	];
+			}, function(result) {
+				console.log('IwcAppCtrl::bootstrap failed');
+			});
+	}
 
-	$scope.panels = [
+	$scope.panels = this.panels = [
 		{"template": 'js/mail/templates/main/panel.html', "title": "Mail", "selected": false},
 		{"template": 'js/calendar/templates/panel.html', "title": "Calendar", "selected": false},
 		{"template": 'js/addressbook/templates/panel.html', "title": "Address Book", "selected": false}
 	];
 
- 	$scope.panels[0].selected = true;
+ 	//this.panels[0].selected = true;
 
- 	// startup IwcpService
+ 	// let's go...
+ 	this.bootstrap();
+ 	
 
  	// startup c11nService
 

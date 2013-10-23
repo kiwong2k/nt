@@ -9,7 +9,7 @@ function LoginCtrl(iwcp, $window) {
 	}
 
 	this.login = function() {
-		console.log("LoginCtrl::login", this.userName, this.password)
+		console.log("LoginCtrl::login", this.userName, this.password);
 		iwcp.login({'username': this.userName, 'password': this.password}).
 			then(function(result) {
 				console.log('LoginCtrl::login succeeded');

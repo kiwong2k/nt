@@ -2,7 +2,7 @@ iwc.app.directive('banner', function() {
 	return {
 		restrict: 'E',
 		transclude: true,
-		scope: true,
+		scope: false,
 		controller: function($scope, $element, $rootScope) {
 			$scope.select = function(panel) {
 				$rootScope.$broadcast('iwc-SelectServicePanel', panel);
