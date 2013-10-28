@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-function IwcAppCtrl($scope, $cacheFactory, iwcp, iwcprefs) {
+function IwcAppCtrl($scope, $cacheFactory, iwcp, iwcprefs, c11n) {
 	$scope.$on('iwc-SelectServicePanel', function(event, panel) {
 		angular.forEach($scope.panels, function(p) {
 			p.selected = false;
@@ -22,7 +22,9 @@ function IwcAppCtrl($scope, $cacheFactory, iwcp, iwcprefs) {
 				console.log('IwcAppCtrl::bootstrap succeeded');
 				iwcprefs.put(result);
 
-				// load c11n if enabled
+				// load c11n
+				c11n.startup();
+
 				//c11n.loadModule('IwcAppCtrl');
 
 				//_loadApp(iwcprefs.get('user_prefs.general.defaultapp'));
