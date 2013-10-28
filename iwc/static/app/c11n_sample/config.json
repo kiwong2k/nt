@@ -4,7 +4,7 @@
 		'js': {
 			'enabled': false,
 			'modules': {
-				'IwcAppCtrl': 'c11n/allDomain/js/iwc/c11n-IwcAppCtrl.js'
+				'IwcAppCtrl': 'c11n/allDomain/js/iwc/c11nIwcAppCtrl.js'
 			}
 		}
 	},
