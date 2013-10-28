@@ -1,0 +1,19 @@
+
+{
+	'allDomain': {
+		'js': {
+			'enabled': false,
+			'modules': {
+				'IwcAppCtrl': 'c11n/allDomain/js/iwc/c11n-IwcAppCtrl.js'
+			}
+		}
+	},
+
+	'example.com': {
+		'js': {
+			enabled: false
+		}
+	}
+
+	
+}
