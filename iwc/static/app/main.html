@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp" ng-controller="IwcAppCtrl as iwcAppCtrl">
+<html lang="en" ng-app="myApp" ng-controller="IwcAppCtrl">
 <head>
 	<meta charset="utf-8">
 	<title>Convergence</title>
@@ -16,7 +16,7 @@
 	<div iwcng-layout>
 		<banner iwcng-top>banner</banner>
 		<div class="iwc-main-container iwc-container"  iwcng-center>
-			<div ng-repeat="panel in iwcAppCtrl.panels"  ng-class="{active: panel.selected}">
+			<div ng-repeat="panel in panels"  ng-class="{active: panel.selected}">
 				<ng-include src="panel.template"></ng-include>
 			</div>
 		</div>
