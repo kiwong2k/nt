@@ -36,8 +36,9 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 	this._serializeParams = function(param) {
 		param = param || {};
 		param['fmt-out'] = 'text/json';	// additional param
-		var token = $cookies['iwc-auth'].replace(/(^token=|.*?:token=)([^:]*)(.*)/i, '$2')
-		if (token != $cookies['iwc-auth'])
+		var cookieIwcAuth = $cookies['iwc-auth'] || "";
+		var token = cookieIwcAuth.replace(/(^token=|.*?:token=)([^:]*)(.*)/i, '$2')
+		if (token != cookieIwcAuth)
 			param['token'] = token;
 		return $.param(param);
 	}
@@ -51,7 +52,12 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 			{headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}}
 		).
 		success(function(data, status) {
-			var errno = parseInt(data.iwcp['error-code']);
+			// prelogin.iwc does not return any error-code
+			try {
+				var errno = parseInt(data.iwcp['error-code']);
+			} catch (e) {
+				errno = 0;
+			}
 			if (errno == 0) {
 				console.log('iwcp::_postRequest succeeded', url);
 				deferred.resolve(data);
