@@ -1,0 +1,6 @@
+[
+	"js/mail/mail.js",
+	"js/mail/services.js",
+	"js/mail/controllers.js",
+	"js/mail/ComposeDialog.js"
+]

@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-function IwcAppCtrl($scope, $cacheFactory, iwcp, iwcprefs, c11n) {
+function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 	$scope.$on('iwc-SelectServicePanel', function(event, panel) {
 		angular.forEach($scope.panels, function(p) {
 			p.selected = false;
@@ -9,8 +9,25 @@ function IwcAppCtrl($scope, $cacheFactory, iwcp, iwcprefs, c11n) {
 		panel.selected = true;
 
 		if (!panel.isLoaded) {
-			panel.template = 'js/' + panel.key + '/templates/panel.html', 
-			panel.isLoaded = true;
+			var packageJSON = 'js/'+panel.key+'/package.json';
+			$http.get(
+				packageJSON
+			).
+			success(function(json) {
+				$script(
+					json,
+					function() {
+						console.log("successfully loaded", packageJSON)
+						$scope.$apply(function() {
+							panel.template = 'js/' + panel.key + '/templates/panel.html', 
+							panel.isLoaded = true;
+						});
+					}
+				);
+			}).
+			error(function() {
+				console.error("failed to load", packageJSON)
+			})
 		}
 	});
 
