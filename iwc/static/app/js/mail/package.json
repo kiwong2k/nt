@@ -1,6 +1,5 @@
 [
-	"js/mail/mail.js",
-	"js/mail/services.js",
-	"js/mail/controllers.js",
+	"js/mail/services/selectMsg.js",
+	"js/mail/controllers/MailCtrl.js",
 	"js/mail/ComposeDialog.js"
 ]
