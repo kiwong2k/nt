@@ -3,6 +3,10 @@
 /* Controllers */
 function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 	$scope.$on('iwc-SelectServicePanel', function(event, panel) {
+		$scope.selectPanel(panel);
+	});
+
+	$scope.selectPanel = function(panel) {
 		angular.forEach($scope.panels, function(p) {
 			p.selected = false;
 		});
@@ -29,7 +33,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 				console.error("failed to load", packageJSON)
 			})
 		}
-	});
+	}
 
 	// return a promise
 	$scope.bootstrap = function() {
@@ -44,34 +48,45 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 
 				//c11n.loadModule('IwcAppCtrl');
 
-				//_loadApp(iwcprefs.get('user_prefs.general.defaultapp'));
-
 
 			}, function(result) {
 				console.log('IwcAppCtrl::bootstrap failed');
 			});
 	}
 
+	$scope.initialize = function() {
+		// template will be loaded dynamically
+		$scope.panels = [
+			{'key': 'mail', 'template': '', 'title': 'Mail', 'selected': false, 'isLoaded': false},
+			{'key': 'calendar', 'template': '', 'title': 'Calendar', 'selected': false, 'isLoaded': false},
+			{'key': 'addressbook', 'template': '', 'title': 'Address Book', 'selected': false, 'isLoaded': false}
+		];
+	}
 
-	$scope.panels = [
-	/*
-		{'key': 'mail', 'template': 'js/mail/templates/panel.html', 'title': 'Mail', 'selected': false},
-		{'key': 'calendar', 'template': 'js/calendar/templates/panel.html', 'title': 'Calendar', 'selected': false},
-		{'key': 'addressbook', 'template': 'js/addressbook/templates/panel.html', 'title': 'Address Book', 'selected': false}
-	*/
-	
-		{'key': 'mail', 'template': '', 'title': 'Mail', 'selected': false, 'isLoaded': false},
-		{'key': 'calendar', 'template': '', 'title': 'Calendar', 'selected': false, 'isLoaded': false},
-		{'key': 'addressbook', 'template': '', 'title': 'Address Book', 'selected': false, 'isLoaded': false}
-	
-	];
+	$scope.startup = function() {
+		$scope.initialize();
+
+		var defaultApp = iwcprefs.get('user_prefs.general.defaultapp');
+		var panel;
+		angular.forEach($scope.panels, function(p) {
+			if (p.key == defaultApp) {
+				panel = p;
+			}
+		});
+
+		if (panel) {
+			$scope.selectPanel(panel)
+		} else {
+			console.error('IwcAppCtrl::startup failed - cannot find defaultApp', defaultApp);
+		}
+	}
 
  	//this.panels[0].selected = true;
 
  	// let's go...
  	$scope.bootstrap().
  		then(function(result) {
-
+ 			$scope.startup();
  		});
  	
 

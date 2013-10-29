@@ -62,7 +62,7 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 				console.log('iwcp::_postRequest succeeded', url);
 				deferred.resolve(data);
 			} else {
-				console.log('iwcp::_postRequest failed', errno, url);
+				console.error('iwcp::_postRequest failed', errno, url);
 				var error = new Error(data.iwcp["message"]);
 				error.errno = parseInt(errno);
 				if (error.errno==1101 || error.errno==18)
@@ -72,7 +72,7 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 			}
 		}).
 		error(function(data, status) {
-			console.log('iwcp::_postRequest failed', url);
+			console.error('iwcp::_postRequest failed', url);
 			deferred.reject(data);
 			//return $q.reject(data);
 		});

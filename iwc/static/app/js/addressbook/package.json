@@ -1,4 +1,4 @@
 [
-	"js/addressbook/AddressBookCtrl.js",
-	"js/addressbook/services.js"
+	"js/addressbook/controllers/AddressBookCtrl.js",
+	"js/addressbook/services/services.js"
 ]
