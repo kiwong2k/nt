@@ -81,8 +81,6 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 		}
 	}
 
- 	//this.panels[0].selected = true;
-
  	// let's go...
  	$scope.bootstrap().
  		then(function(result) {
