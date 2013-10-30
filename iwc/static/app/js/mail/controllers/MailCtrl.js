@@ -1,4 +1,4 @@
-function IwcMailCtrl($scope, $filter, $dialog) {
+function IwcMailCtrl($scope, $filter, $modal) {
 	$scope.panels = [
 		{"template": 'js/mail/templates/main/navigator/navigator.html', "selected": true},
 		{"template": 'js/mail/templates/main/viewer/viewer.html', "selected": true}
@@ -91,7 +91,7 @@ function IwcMailCtrl($scope, $filter, $dialog) {
           '</div>';
 
 	$scope.composeMail = function() {
-		var d = $dialog.dialog(
+		var d = $modal.open(
 			{ 
 				backdrop: true,
 				keyboard: true,

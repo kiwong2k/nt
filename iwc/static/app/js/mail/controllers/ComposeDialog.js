@@ -1,5 +1,5 @@
-function ComposeDialog($scope, dialog){
+function ComposeDialog($scope, modal){
 	$scope.close = function(result){
-		dialog.close(result);
+		modal.close(result);
 	};
 }
