@@ -1,7 +1,7 @@
 'use strict';
 
 /* Services */
-iwc.app.service('iwcprefs', function($cacheFactory) {
+iwc.app.service('iwcprefs', function($cacheFactory, iwcutil) {
 
 	this.put = function(value) {
 		this.cache.put("allprefs", value);
