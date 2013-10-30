@@ -91,7 +91,7 @@ function IwcMailCtrl($scope, $filter, $modal) {
           '</div>';
 
 	$scope.composeMail = function() {
-		var modalInstance = $modal.open(
+		var d = $modal.open(
 			{ 
 				backdrop: true,
 				keyboard: true,
@@ -101,7 +101,7 @@ function IwcMailCtrl($scope, $filter, $modal) {
 				controller: $scope.composepanels[0].controller
 			}
 		);
-		modalInstance.result.then(function(result) {
+		d.result.then(function(result) {
 			alert('dialog closed with result: ' + result);
 		});
 	}
