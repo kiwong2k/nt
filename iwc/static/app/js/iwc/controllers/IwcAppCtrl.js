@@ -44,11 +44,12 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 				iwcprefs.put(result);
 
 				// load c11n
-				c11n.startup();
-
-				//c11n.loadModule('IwcAppCtrl');
-
-
+				c11n.startup().
+					then(function() {
+						c11n.loadModule('IwcAppCtrl', $scope.startup);
+					}, function() {
+						console.log('IwcAppCtrl::bootstrap failed');
+					});
 			}, function(result) {
 				console.log('IwcAppCtrl::bootstrap failed');
 			});
@@ -87,7 +88,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
  	// let's go...
  	$scope.bootstrap().
  		then(function(result) {
- 			$scope.startup();
+ 			//$scope.startup();
  		});
  	
 
