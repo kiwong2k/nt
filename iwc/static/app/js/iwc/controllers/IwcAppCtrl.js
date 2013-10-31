@@ -54,6 +54,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 			});
 	}
 
+	// initialize function to setup member variables
 	$scope.initialize = function() {
 		// template will be loaded dynamically
 		$scope.panels = [
@@ -61,8 +62,10 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 			{'key': 'calendar', 'template': '', 'title': 'Calendar', 'selected': false, 'isLoaded': false},
 			{'key': 'addressbook', 'template': '', 'title': 'Address Book', 'selected': false, 'isLoaded': false}
 		];
+
 	}
 
+	// startup function
 	$scope.startup = function() {
 		$scope.initialize();
 

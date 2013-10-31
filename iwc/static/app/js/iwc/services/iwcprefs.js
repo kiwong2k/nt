@@ -11,7 +11,7 @@ iwc.app.service('iwcprefs', function($cacheFactory, iwcutil) {
 		return iwcutil.get(this.cache.get('allprefs'), key);
 	}
 
-	this.cache = $cacheFactory('iwcprefs');	
+	this.cache = $cacheFactory('iwccache');	
 });
 
 

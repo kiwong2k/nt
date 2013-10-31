@@ -1,17 +1,16 @@
-
 {
-	'allDomain': {
-		'js': {
-			'enabled': false,
-			'modules': {
-				'IwcAppCtrl': 'c11n/allDomain/js/iwc/c11nIwcAppCtrl.js'
+	"allDomain": {
+		"js": {
+			"enabled": false,
+			"module": {
+				"IwcAppCtrl": "c11n/allDomain/js/iwc/c11nIwcAppCtrl.js"
 			}
 		}
 	},
 
-	'example.com': {
-		'js': {
-			enabled: false
+	"example.com": {
+		"js": {
+			"enabled": false
 		}
 	}
 
