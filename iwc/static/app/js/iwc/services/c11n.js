@@ -44,7 +44,17 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 			? iwcutil.get(this.cache.get('c11n'), 'js.module.'+key)
 			: null;
 		if (moduleFilename) {
-			$script(moduleFilename, cb);
+			var depFound = true;
+			$script(moduleFilename, key);
+			$script.ready(key, 
+				function() {
+					if (depFound) cb();
+				}, 
+				function(notFoundDeps) {
+					console.error("c11n::loadModule", moduleFilename, "not found");
+					depFound = false;
+				}
+			);
 		} else {
 			cb();
 		}
