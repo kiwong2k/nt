@@ -40,7 +40,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
 		console.log('IwcAppCtrl::bootstrap');
 		return iwcp.getAllPrefs().
 			then(function(result) {
-				console.log('IwcAppCtrl::bootstrap succeeded');
+				console.log('IwcAppCtrl::bootstrap getAllPrefs succeeded');
 				iwcprefs.put(result);
 
 				// load c11n
@@ -50,6 +50,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
 							$injector.invoke(c11nIwcAppCtrl, this, {$scope: $scope});
 							$scope.startup();
 						});
+						console.log('IwcAppCtrl::bootstrap succeeded');
 					}, function() {
 						console.log('IwcAppCtrl::bootstrap failed');
 					});
