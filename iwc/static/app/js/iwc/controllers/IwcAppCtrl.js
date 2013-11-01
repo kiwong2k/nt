@@ -46,7 +46,9 @@ function IwcAppCtrl($scope, $cacheFactory, $http, iwcp, iwcprefs, c11n) {
 				// load c11n
 				c11n.startup().
 					then(function() {
-						c11n.loadModule('IwcAppCtrl', $scope.startup);
+						c11n.loadModule('IwcAppCtrl', function() {
+							$scope.startup();
+						});
 					}, function() {
 						console.log('IwcAppCtrl::bootstrap failed');
 					});

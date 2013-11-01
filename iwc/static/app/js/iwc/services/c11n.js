@@ -14,7 +14,7 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 		var deferred = $q.defer();
 		if (this.enabled) {
 	 		var _this = this;
-			var configJSON = 'c11n_sample/config.json';
+			var configJSON = iwcutil.getUniqueUrl('c11n/config.json');
 			$http.get(
 				configJSON
 			).
@@ -45,18 +45,23 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 			: null;
 		if (moduleFilename) {
 			var depFound = true;
+			moduleFilename = iwcutil.getUniqueUrl(moduleFilename);
+			$script(moduleFilename, cb);
+
+			/* the following codes do not work, function(notFoundDeps) always get called
 			$script(moduleFilename, key);
-			$script.ready(key, 
+			$script.ready([key], 
 				function() {
-					if (depFound) cb();
+					if (depFound && cb) cb();
 				}, 
 				function(notFoundDeps) {
 					console.error("c11n::loadModule", moduleFilename, "not found");
 					depFound = false;
 				}
 			);
+			*/
 		} else {
-			cb();
+			if (cb) cb();
 		}
 	}
 

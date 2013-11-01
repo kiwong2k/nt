@@ -16,4 +16,10 @@ iwc.app.service('iwcutil', function() {
 
 	}
 
+	this.getUniqueUrl = function(url) {
+		return url + '?' + this.random;
+	}
+
+	this.random = (new Date()).getTime();
+
 });
