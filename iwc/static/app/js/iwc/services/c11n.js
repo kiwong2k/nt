@@ -39,10 +39,14 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 		return this.enabled;
 	}
 
+	this.isModule = function(key) {
+		return this.enabled && this.cache.get('c11n', 'js.enabled') 
+				? iwcutil.get(this.cache.get('c11n'), 'js.module.'+key)
+				: false;
+	}
+
 	this.loadModule = function(key, cb) {
-		var moduleFilename = this.enabled && this.cache.get('c11n', 'js.enabled') 
-			? iwcutil.get(this.cache.get('c11n'), 'js.module.'+key)
-			: null;
+		var moduleFilename = this.isModule(key);
 		if (moduleFilename) {
 			var depFound = true;
 			moduleFilename = iwcutil.getUniqueUrl(moduleFilename);

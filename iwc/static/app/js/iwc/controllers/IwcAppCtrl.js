@@ -46,10 +46,14 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
 				// load c11n
 				c11n.startup().
 					then(function() {
-						c11n.loadModule('IwcAppCtrl', function() {
-							if (typeof c11nIwcAppCtrl != 'undefined') $injector.invoke(c11nIwcAppCtrl, this, {$scope: $scope});
+						if (c11n.isModule('IwcAppCtrl')) {
+							c11n.loadModule('IwcAppCtrl', function() {
+								$injector.invoke(c11nIwcAppCtrl, this, {$scope: $scope});
+								$scope.startup();
+							});
+						} else {
 							$scope.startup();
-						});
+						}
 						console.log('IwcAppCtrl::bootstrap succeeded');
 					}, function() {
 						console.log('IwcAppCtrl::bootstrap failed');
