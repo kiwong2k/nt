@@ -47,6 +47,7 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 			var depFound = true;
 			moduleFilename = iwcutil.getUniqueUrl(moduleFilename);
 			$script(moduleFilename, cb);
+			console.log("c11n::loadModule", "loading", moduleFilename);
 
 			/* the following codes do not work, function(notFoundDeps) always get called
 			$script(moduleFilename, key);
