@@ -101,7 +101,7 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 	}
 
 	this.getAllPrefs = function() {
-		console.log('iwcp::login');
+		console.log('iwcp::getAllPrefs');
 
 		var _this = this;
 		return this._postRequest(

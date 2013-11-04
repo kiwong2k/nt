@@ -1,7 +1,7 @@
 'use strict';
 
 /* Services */
-iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
+iwc.app.service('c11n', function($http, $injector, $q, $cacheFactory, iwcprefs, iwcutil) {
 
 	this.initialize = function() {
 		this.enabled = iwcprefs.get('service_acl.c11n-service');		
@@ -12,6 +12,7 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 		this.initialize();
 
 		var deferred = $q.defer();
+
 		if (this.enabled) {
 	 		var _this = this;
 			var configJSON = iwcutil.getUniqueUrl('c11n/config.json');
@@ -19,14 +20,14 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 				configJSON
 			).
 			success(function(json) {
-				console.log("successfully loaded", configJSON)
+				console.log('c11n:startup', configJSON, 'loaded')
 				var userdomain = iwcprefs.get('general.userdomain');
 				var config = json[userdomain] || json['allDomain'];
 				_this.cache.put('c11n', config);
 				deferred.resolve();
 			}).
 			error(function() {
-				console.error("failed to load", configJSON)
+				console.error('c11n::startup failed to load', configJSON)
 				deferred.reject()
 			})
 		} else {
@@ -39,19 +40,29 @@ iwc.app.service('c11n', function($http, $q, $cacheFactory, iwcprefs, iwcutil) {
 		return this.enabled;
 	}
 
-	this.isModule = function(key) {
+	this.isModuleDefined = function(key) {
 		return this.enabled && this.cache.get('c11n', 'js.enabled') 
 				? iwcutil.get(this.cache.get('c11n'), 'js.module.'+key)
 				: false;
 	}
 
-	this.loadModule = function(key, cb) {
-		var moduleFilename = this.isModule(key);
+	this.loadModule = function(key, cb, param) {
+		var moduleFilename = this.isModuleDefined(key);
 		if (moduleFilename) {
 			var depFound = true;
 			moduleFilename = iwcutil.getUniqueUrl(moduleFilename);
-			$script(moduleFilename, cb);
-			console.log("c11n::loadModule", "loading", moduleFilename);
+			//$script(moduleFilename, cb);
+			$script(moduleFilename, function() {
+				try {
+					$injector.invoke(eval(key), null, param);
+					console.log('c11n::loadModule', moduleFilename, 'loaded');
+					cb();
+				} catch (e) {
+					console.error('c11n::loadModule', 'fail to load', moduleFilename);
+					throw(e);
+				}
+			})
+			console.log('c11n::loadModule', 'loading', moduleFilename);
 
 			/* the following codes do not work, function(notFoundDeps) always get called
 			$script(moduleFilename, key);

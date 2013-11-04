@@ -1,7 +1,7 @@
 'use strict';
 
 /* Controllers */
-function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11n) {
+function IwcAppCtrl($scope, $cacheFactory, $http, $q, $injector, iwcp, iwcprefs, c11n) {
 	$scope.$on('iwc-SelectServicePanel', function(event, panel) {
 		$scope.selectPanel(panel);
 	});
@@ -21,7 +21,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
 				$script(
 					json,
 					function() {
-						console.log("successfully loaded", packageJSON)
+						console.log('IwcAppCtrl::selectPanel', packageJSON, 'loaded')
 						$scope.$apply(function() {
 							panel.template = 'js/' + panel.key + '/templates/panel.html', 
 							panel.isLoaded = true;
@@ -30,7 +30,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
 				);
 			}).
 			error(function() {
-				console.error("failed to load", packageJSON)
+				console.error("IwcAppCtrl::selectPanel failed to load", packageJSON)
 			})
 		}
 	}
@@ -38,7 +38,10 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
 	// return a promise
 	$scope.bootstrap = function() {
 		console.log('IwcAppCtrl::bootstrap');
-		return iwcp.getAllPrefs().
+
+		var deferred = $q.defer();
+		
+		iwcp.getAllPrefs().
 			then(function(result) {
 				console.log('IwcAppCtrl::bootstrap getAllPrefs succeeded');
 				iwcprefs.put(result);
@@ -46,21 +49,18 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
 				// load c11n
 				c11n.startup().
 					then(function() {
-						if (c11n.isModule('IwcAppCtrl')) {
-							c11n.loadModule('IwcAppCtrl', function() {
-								$injector.invoke(c11nIwcAppCtrl, this, {$scope: $scope});
-								$scope.startup();
-							});
-						} else {
-							$scope.startup();
-						}
 						console.log('IwcAppCtrl::bootstrap succeeded');
+						deferred.resolve();
 					}, function() {
 						console.log('IwcAppCtrl::bootstrap failed');
+						deferred.reject();
 					});
 			}, function(result) {
 				console.log('IwcAppCtrl::bootstrap failed');
+				deferred.reject();
 			});
+
+			return deferred.promise;
 	}
 
 	// initialize function to setup member variables
@@ -96,7 +96,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $injector, iwcp, iwcprefs, c11
  	// let's go...
  	$scope.bootstrap().
  		then(function(result) {
- 			//$scope.startup();
+ 			c11n.loadModule('c11nIwcAppCtrl', $scope.startup, {$scope: $scope});
  		});
  	
 

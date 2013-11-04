@@ -3,7 +3,7 @@
 		"js": {
 			"enabled": true,
 			"module": {
-				"IwcAppCtrl": "c11n/allDomain/js/iwc/controllers/c11nIwcAppCtrl.js"
+				"c11nIwcAppCtrl": "c11n/allDomain/js/iwc/controllers/c11nIwcAppCtrl.js"
 			}
 		}
 	},
