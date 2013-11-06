@@ -1,9 +1,9 @@
 {
 	"allDomain": {
 		"js": {
-			"enabled": true,
+			"enabled": false,
 			"module": {
-				"c11nIwcAppCtrl": "c11n/allDomain/js/iwc/controllers/c11nIwcAppCtrl.js"
+				"c11nIwcAppCtrl": "c11n/allDomain/iwc/controllers/c11nIwcAppCtrl.js"
 			}
 		}
 	},

@@ -11,19 +11,16 @@
 </head>
 <body class="iwc">
 	<form name="loginForm" ng-submit="loginCtrl.login()" ng-controller="LoginCtrl as loginCtrl">
-		<div>
-			<label for="username">Username:</label>
-			<input name="username" type="text" ng-model="loginCtrl.userName" ng-change="loginCtrl.dataChanged()" aria-required="true"/>
-		</div>
-		<div>
-			<label for="password">Password:</label>
-			<input name="password" type="password" ng-model="loginCtrl.password" ng-change="loginCtrl.dataChanged()" aria-required="true"/>
-		</div>
-
-		<div>
-			<input type="submit" value="Sign in" ng-disabled="loginCtrl.isDisabled"/>
-		</div>
-			
+		<label for="username">Username:
+			<input id="username" type="text" ng-model="loginCtrl.userName" ng-change="loginCtrl.dataChanged()" />
+		</label>
+		
+		<label for="password">Password:
+			<input id="password" type="password" ng-model="loginCtrl.password" ng-change="loginCtrl.dataChanged()" />
+		</label>
+		
+		<input name="signin" type="submit" value="Sign in" ng-disabled="loginCtrl.isDisabled"/>
+					
 	</form>
 
 <!-- In production use:
@@ -35,10 +32,12 @@
 	<script src="lib/angular/angular-cookies.js"></script>
 	<script src="lib/angular-ui/ui-bootstrap-tpls-0.6.0.js"></script>
 	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/angular-translate/angular-translate.js"></script>
+	<script src="lib/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
 
-	<script src="js/iwc/app.js"></script>
-	<script src="js/iwc/controllers/LoginCtrl.js"></script>
-	<script src="js/iwc/services/iwcp.js"></script>
+	<script src="iwc/app.js"></script>
+	<script src="iwc/controllers/LoginCtrl.js"></script>
+	<script src="iwc/services/iwcp.js"></script>
 
 
 </body>
