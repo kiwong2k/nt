@@ -1,0 +1,4 @@
+[
+	"calendar/controllers/CalendarCtrl.js",
+	"calendar/services/services.js"
+]

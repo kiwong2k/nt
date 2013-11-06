@@ -1,0 +1,33 @@
+<div class="iwc-mail-message" iwcng-center>
+	<div class="iwc-mail-msgheader">
+		<div class="inline-block">
+			<div class="iwc-subject iwc-ellipsis">
+				{{msg.subject}}
+			</div>
+			<div>
+				<div class="pull-right">
+					<span class="caret"></span>
+				</div>				
+				<div>
+					<label> From:
+						<span class="iwc-from iwc-ellipsis">
+							{{msg.from}}
+						</span>
+					</label>
+				</div>
+			</div>
+			<div class="iwc-to iwc-ellipsis">
+				{{msg.to}}
+			</div>
+			<div class="iwc-cc iwc-ellipsis">
+				{{msg.cc}}
+			</div>
+			<div class="iwc-bcc iwc-ellipsis">
+				{{msg.bcc}}
+			</div>
+		</div>
+	</div>
+	<div class="iwc-mail-msgbody">
+		<div ng-bind-html-unsafe="msg.html"></div>
+	</div>
+</div>

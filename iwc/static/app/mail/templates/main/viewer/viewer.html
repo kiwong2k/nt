@@ -1,0 +1,5 @@
+<div class="iwc-mail-viewer iwc-container" iwcng-layout >
+	<div ng-repeat="panel in viewpanels"  ng-class="{active: panel.selected}">
+		<ng-include src="panel.template"></ng-include>
+	</div>
+</div>
