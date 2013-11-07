@@ -7,15 +7,14 @@
 	<link rel="stylesheet" href="css/app.css"/>
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
 
-
 </head>
-<body class="iwc">
-	<form name="loginForm" ng-submit="loginCtrl.login()" ng-controller="LoginCtrl as loginCtrl">
-		<label for="username">Username:
+<body class="iwc ng-hide" ng-show="loginCtrl.isReady" ng-controller="LoginCtrl as loginCtrl">
+	<form name="loginForm" ng-submit="loginCtrl.login()">
+		<label for="username" ngcloak>{{'login_username' | translate }}
 			<input id="username" type="text" ng-model="loginCtrl.userName" ng-change="loginCtrl.dataChanged()" />
 		</label>
-		
-		<label for="password">Password:
+
+		<label for="password" ngcloak>{{'login_password' | translate}}
 			<input id="password" type="password" ng-model="loginCtrl.password" ng-change="loginCtrl.dataChanged()" />
 		</label>
 		
@@ -26,6 +25,7 @@
 <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   -->
+
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-sanitize.js"></script>

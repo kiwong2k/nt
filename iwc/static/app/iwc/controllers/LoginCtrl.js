@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function LoginCtrl(iwcp, $window) {
+function LoginCtrl(iwcp, $window, $translate, $translatePartialLoader) {
 
 	this.dataChanged = function() {
 		this.isDisabled = !(this.userName && this.password);
@@ -24,5 +24,14 @@ function LoginCtrl(iwcp, $window) {
 	this.dataChanged();
 
 	iwcp.preLogin()
+
+	$translatePartialLoader.addPart('iwc');
+
+	var _this = this;
+	this.isReady = false;
+	$translate.refresh().
+		then(function() {
+			_this.isReady = true;
+		});
 
 }
