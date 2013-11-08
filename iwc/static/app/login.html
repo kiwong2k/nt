@@ -8,17 +8,17 @@
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
 
 </head>
-<body class="iwc ng-hide" ng-show="loginCtrl.isReady" ng-controller="LoginCtrl as loginCtrl">
-	<form name="loginForm" ng-submit="loginCtrl.login()">
+<body class="iwc ng-hide" ng-show="isReady" ng-controller="LoginCtrl">
+	<form name="loginForm" ng-submit="login()">
 		<label for="username" ngcloak>{{'login_username' | translate }}
-			<input id="username" type="text" ng-model="loginCtrl.userName" ng-change="loginCtrl.dataChanged()" />
+			<input id="username" type="text" ng-model="userName" ng-change="dataChanged()" />
 		</label>
 
 		<label for="password" ngcloak>{{'login_password' | translate}}
-			<input id="password" type="password" ng-model="loginCtrl.password" ng-change="loginCtrl.dataChanged()" />
+			<input id="password" type="password" ng-model="password" ng-change="dataChanged()" />
 		</label>
 		
-		<input name="signin" type="submit" value="Sign in" ng-disabled="loginCtrl.isDisabled"/>
+		<input name="signin" type="submit" value="Sign in" ng-disabled="isDisabled"/>
 					
 	</form>
 
@@ -32,13 +32,17 @@
 	<script src="lib/angular/angular-cookies.js"></script>
 	<script src="lib/angular-ui/ui-bootstrap-tpls-0.6.0.js"></script>
 	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="lib/script.js-master/script.js"></script>
 	<script src="lib/angular-translate/angular-translate.js"></script>
 	<script src="lib/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
 
 	<script src="iwc/app.js"></script>
 	<script src="iwc/controllers/LoginCtrl.js"></script>
-	<script src="iwc/services/iwcp.js"></script>
 
+	<script src="iwc/services/iwcp.js"></script>
+	<script src="iwc/services/iwcprefs.js"></script>
+	<script src="iwc/services/iwcutil.js"></script>
+	<script src="iwc/services/c11n.js"></script>
 
 </body>
 </html>

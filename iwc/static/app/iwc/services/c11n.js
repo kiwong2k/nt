@@ -4,7 +4,7 @@
 iwc.app.service('c11n', function($http, $injector, $q, $cacheFactory, iwcprefs, iwcutil) {
 
 	this.initialize = function() {
-		this.enabled = iwcprefs.get('service_acl.c11n-service');		
+		this.enabled = this.enabled || iwcprefs.get('service_acl.c11n-service');		
 		this.cache = $cacheFactory.get('iwccache');
 	}
 
@@ -34,6 +34,10 @@ iwc.app.service('c11n', function($http, $injector, $q, $cacheFactory, iwcprefs, 
 			deferred.resolve();
 		}
 		return deferred.promise;
+	}
+
+	this.enable = function() {
+		this.enabled = true;
 	}
 
 	this.isEnabled = function() {
