@@ -30,7 +30,7 @@ iwc.app.directive('banner', function() {
 									'<li><a href="#"><i class="icon-cog icon-white"></i></a></li>' +
 									'<li>' +
 										'<div class="btn-group">' +
-											'<a class="btn" href="#"><i class="icon-user"></i> Jeff Lin</a>' +
+											'<a class="btn" href="#"><i class="glyphicon glyphicon-user"></i> Jeff Lin</a>' +
 											'<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>' +
 											'<ul class="dropdown-menu">' +
 												'<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>' +
