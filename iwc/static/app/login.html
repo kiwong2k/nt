@@ -2,20 +2,21 @@
 <html lang="en" ng-app="myApp" >
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Convergence</title>
 
-	<link rel="stylesheet" href="css/app.css"/>
-	<link rel="stylesheet" href="lib/bootstrap-2.3.1/css/bootstrap.css"/>
+	<link rel="stylesheet" href="lib/bootstrap-3.0.2/css/bootstrap.css"/>
+	<link rel="stylesheet" href="css/login.css"/>
 	
 <!-- In production use:
-  replace all files with min version
+	replace all files with min version
 -->
 	<script src="lib/jquery-1.10.2/jquery-1.10.2.js"></script>
 	<script src="lib/angular-1.2.1/angular.js"></script>
 	<script src="lib/angular-1.2.1/angular-sanitize.js"></script>
 	<script src="lib/angular-1.2.1/angular-cookies.js"></script>
 	<script src="lib/angular-ui-0.6.0/ui-bootstrap-tpls-0.6.0.js"></script>
-	<script src="lib/bootstrap-2.3.1/js/bootstrap.js"></script>
+	<script src="lib/bootstrap-3.0.2/js/bootstrap.js"></script>
 	<script src="lib/script.js-master/script.js"></script>
 	<script src="lib/angular-translate/angular-translate.js"></script>
 	<script src="lib/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
@@ -29,19 +30,19 @@
 	<script src="iwc/services/c11n.js"></script>
 </head>
 
-<body class="iwc ng-hide" ng-show="isReady" ng-controller="LoginCtrl">
-	<form name="loginForm" ng-submit="login()">
-		<label for="username" ngcloak>{{'login_username' | translate }}
-			<input id="username" type="text" ng-model="userName" ng-change="dataChanged()" />
-		</label>
-
-		<label for="password" ngcloak>{{'login_password' | translate}}
-			<input id="password" type="password" ng-model="password" ng-change="dataChanged()" />
-		</label>
-		
-		<input name="signin" type="submit" value="Sign in" ng-disabled="isDisabled"/>
-					
-	</form>
+<body>
+	<div class="container ng-hide" ng-show="isReady" ng-controller="LoginCtrl">
+		<form class="form-signin" name="loginForm" ng-submit="login()">
+			<h2 class="form-signin-heading">{{'login_heading' | translate}}</h2>
+			<input type="text" class="form-control" ng-model="userName" placeholder="{{'login_username' | translate }}" required autofocus>
+			<input type="password" class="form-control" ng-model="password" placeholder="{{'login_password' | translate }}" required>
+			<label class="checkbox">
+			<input type="checkbox" value="remember-me"> Remember me
+			</label>
+			<button class="btn btn-lg btn-primary btn-block" name="signin" type="submit">{{'login_signin' | translate}}</button>
+		</form>
+	</div> <!-- /container -->
 </body>
+
 </html>
 

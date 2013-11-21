@@ -1,6 +1,7 @@
 {
-	"login_username": "Username:",
-	"login_password": "Password:",
+	"login_heading": "Please sign in",
+	"login_username": "Username",
+	"login_password": "Password",
 	"login_signin":	"Sign In"
 }
 
