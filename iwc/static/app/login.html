@@ -35,10 +35,10 @@
 	<div class="container ng-hide" ng-show="isReady" ng-controller="LoginCtrl">
 		<form class="form-signin" name="loginForm" ng-submit="login()" role="form">
 			<h2 class="form-signin-heading">{{'login_heading' | translate}}</h2>
-			<label class="sr-only" for="username">screen reader</label>
+			<label class="sr-only" for="username"></label>
 			<input type="text" class="form-control" id="username" ng-model="userName" placeholder="{{'login_username' | translate }}" 
 				required autofocus>
-			<label class="sr-only" for="password">screen reader</label>
+			<label class="sr-only" for="password"></label>
 			<input type="password" class="form-control" id="password" ng-model="password" placeholder="{{'login_password' | translate }}" required>
 			<label class="checkbox">
 				<input type="checkbox" value="remember-me"> Remember me
