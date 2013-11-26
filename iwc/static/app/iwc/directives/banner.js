@@ -28,8 +28,6 @@ iwc.app.directive('banner', function() {
 								'</li>' +
 							'</ul>' +
 							'<ul class="nav navbar-nav pull-right">' +
-								'<li><a href="#"><i class="glyphicon glyphicon-fire icon-white"></i></a></li>' +
-								'<li><a href="#"><i class="glyphicon glyphicon-cog icon-white"></i></a></li>' +
 								'<li class="dropdown">' +
 									'<a class="dropdown-toggle" data-toggle="dropdown" href="#">Jeff Lin <b class="caret"></b></a>' +
 									'<ul class="dropdown-menu">' +
