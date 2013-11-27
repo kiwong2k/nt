@@ -14,7 +14,7 @@ function BannerCtrl($scope, $window, $translate, $translatePartialLoader, iwcp, 
 		$scope.initialize();
 	}
 
-	console.log('BannerControl constructor');
+	console.log('BannerCtrl constructor');
 
  	c11n.loadModule('c11nBannerCtrl', $scope.startup, {$scope: $scope});
  

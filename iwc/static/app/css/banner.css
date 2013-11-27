@@ -1,6 +1,6 @@
 .iwc-banner {
 	padding: 0px 0px;
-	/*height: 42px;*/ /* if this value is modified, you need to modify "iwc-main-container" height in app.css */
+	height: 50px;	/* if this value is modified, you need to modify "iwc-main-container" height in app.css */
 	/* background-color: #595959; */
 }
 
