@@ -32,7 +32,6 @@
 	<script src="iwc/services/c11n.js"></script>
 
 	<script src="iwc/controllers/IwcAppCtrl.js"></script>
-	<script src="iwc/controllers/BannerCtrl.js"></script>
 	<script src="iwc/filters/filters.js"></script>
 	<script src="iwc/directives/directives.js"></script>
 
@@ -44,8 +43,8 @@
 		sample using banner directive
 		<banner iwcng-top>banner</banner>
 	-->
-		<div class="iwc-banner" iwcng-top ng-controller="BannerCtrl">
-			<ng-include src="panel.template"></ng-include>
+		<div class="iwc-banner" iwcng-top>
+			<ng-include src="banner.template"></ng-include>
 		</div>
 
 		<div class="iwc-main-container iwc-container"  iwcng-center>

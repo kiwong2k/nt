@@ -19,4 +19,3 @@ function BannerCtrl($scope, $window, $translate, $translatePartialLoader, iwcp, 
  	c11n.loadModule('c11nBannerCtrl', $scope.startup, {$scope: $scope});
  
 }
-

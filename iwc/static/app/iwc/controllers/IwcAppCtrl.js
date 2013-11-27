@@ -66,6 +66,10 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $q, $injector, iwcp, iwcprefs,
 	// initialize function to setup member variables
 	$scope.initialize = function() {
 		// template will be loaded dynamically
+		$scope.banner = {
+			'key': 'banner', 'template': '', 'title': 'Banner', 'selected': false, 'isLoaded': false
+		};
+		
 		$scope.panels = [
 			{'key': 'mail', 'template': '', 'title': 'Mail', 'selected': false, 'isLoaded': false},
 			{'key': 'calendar', 'template': '', 'title': 'Calendar', 'selected': false, 'isLoaded': false},
@@ -87,6 +91,7 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $q, $injector, iwcp, iwcprefs,
 		});
 
 		if (panel) {
+			$scope.selectPanel($scope.banner);
 			$scope.selectPanel(panel)
 		} else {
 			console.error('IwcAppCtrl::startup failed - cannot find defaultApp', defaultApp);
