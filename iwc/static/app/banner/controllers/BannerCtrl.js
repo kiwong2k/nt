@@ -2,11 +2,13 @@
 
 /* Controllers */
 
-function BannerCtrl($scope, $window, $translate, $translatePartialLoader, iwcp, c11n) {
+function BannerCtrl($scope, $window, $translate, $translatePartialLoader, iwcprefs, c11n) {
 
 	// initialize function to setup member variables
 	$scope.initialize = function() {
-
+		 $scope.username = iwcprefs.get('user_prefs.general.screenname') || 
+		 				iwcprefs.get('user_prefs.general.cn') ||
+		 				iwcprefs.get('user_prefs.general.email');
 	}
 
 	// startup function

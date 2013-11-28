@@ -2,6 +2,11 @@
 	"login_heading": "Please sign in",
 	"login_username": "Username",
 	"login_password": "Password",
-	"login_signin":	"Sign In"
+	"login_signin":	"Sign In",
+
+	"banner_help": "Help",
+	"banner_signout": "Sign out",
+	"banner_theme": "Theme"
+
 }
 

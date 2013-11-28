@@ -1,7 +1,8 @@
 'use strict';
 
 /* Controllers */
-function IwcAppCtrl($scope, $cacheFactory, $http, $q, $injector, iwcp, iwcprefs, c11n) {
+function IwcAppCtrl($scope, $cacheFactory, $http, $q, $injector, iwcp, iwcprefs, c11n, 
+													$translate, $translatePartialLoader) {
 	$scope.$on('iwc-SelectServicePanel', function(event, panel) {
 		$scope.selectPanel(panel);
 	});
@@ -101,7 +102,11 @@ function IwcAppCtrl($scope, $cacheFactory, $http, $q, $injector, iwcp, iwcprefs,
  	// let's go...
  	$scope.bootstrap().
  		then(function(result) {
- 			c11n.loadModule('c11nIwcAppCtrl', $scope.startup, {$scope: $scope});
+			$translatePartialLoader.addPart('iwc');
+			$translate.refresh().
+				then(function() {
+					c11n.loadModule('c11nIwcAppCtrl', $scope.startup, {$scope: $scope});
+			});	
  		});
  	
 
