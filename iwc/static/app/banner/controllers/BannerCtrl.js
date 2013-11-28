@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function BannerCtrl($scope, $window, $translate, $translatePartialLoader, iwcprefs, c11n) {
+function BannerCtrl($scope, iwcprefs, c11n) {
 
 	// initialize function to setup member variables
 	$scope.initialize = function() {
