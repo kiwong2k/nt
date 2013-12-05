@@ -1,25 +1,5 @@
-function IwcMailCtrl($scope, $filter, $modal) {
-	$scope.panels = [
-		{"template": 'mail/templates/main/navigator/navigator.html', "selected": true},
-		{"template": 'mail/templates/main/viewer/viewer.html', "selected": true}
-	];
-
-	$scope.navpanels = [
-		{"template": 'mail/templates/main/navigator/navbar.html', "selected": true},
-		{"template": 'mail/templates/main/navigator/msglist.html', "selected": true}
-	];
-
-	$scope.viewpanels = [
-		{"template": 'mail/templates/main/viewer/viewerbar.html', "selected": false},
-		{"template": 'mail/templates/main/viewer/notice.html', "selected": true},
-		{"template": 'mail/templates/main/viewer/chkboxnotice.html', "selected": false},
-		{"template": 'mail/templates/main/viewer/message.html', "selected": false}
-	];
-
-	$scope.composepanels = [
-		{"template": 'mail/templates/dialog/compose/compose.html', "selected": true, "controller": 'ComposeDialog'}
-	];
-	
+function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
+										$translate, $translatePartialLoader) {
 	//
 	// private functions start here
 	//
@@ -186,6 +166,51 @@ function IwcMailCtrl($scope, $filter, $modal) {
 	$scope.uid = 100;
 	$scope.msgs = $scope._fetchMsgs("Inbox", $scope.uid, 300);
 	$scope.msgsChecked = [];
+
+	$scope.panels = [];
+
+	// initialize function to setup member variables
+	$scope.initialize = function() {
+		$scope.panels = [
+			{"template": 'mail/templates/main/navigator/navigator.html'}, 
+			{"template": 'mail/templates/main/viewer/viewer.html'} 
+		];
+
+		$scope.navpanels = [
+			{"template": 'mail/templates/main/navigator/navbar.html', "selected": true},
+			{"template": 'mail/templates/main/navigator/msglist.html', "selected": true}
+		];
+
+		$scope.viewpanels = [
+			{"template": 'mail/templates/main/viewer/viewerbar.html', "selected": false},
+			{"template": 'mail/templates/main/viewer/notice.html', "selected": true},
+			{"template": 'mail/templates/main/viewer/chkboxnotice.html', "selected": false},
+			{"template": 'mail/templates/main/viewer/message.html', "selected": false}
+		];
+
+		$scope.composepanels = [
+			{"template": 'mail/templates/dialog/compose/compose.html', "selected": true, "controller": 'ComposeDialog'}
+		];
+
+
+	}
+
+	// startup function
+	$scope.startup = function() {
+		$scope.initialize();
+	}
+
+	//debugger;
+
+	console.log('MailCtrl constructor');
+
+
+	$translatePartialLoader.addPart('mail');
+	$translate.refresh().
+		then(function() {
+			c11n.loadModule('c11nMailCtrl', $scope.startup, {$scope: $scope});
+	});	
+
 
 }
 

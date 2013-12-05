@@ -13,7 +13,7 @@ iwc.app = angular.module('myApp', ['ngSanitize', 'ngCookies', 'ui.bootstrap', 'p
 iwc.app.config(function($translateProvider, $translatePartialLoaderProvider) {
 	$translateProvider.translations('en', {});
 	$translateProvider.useLoader('$translatePartialLoader', {
-		urlTemplate: '{part}/i18n/iwc-locale_{lang}.json'
+		urlTemplate: '{part}/i18n/locale_{lang}.json'
 	});
 
 	$translateProvider.preferredLanguage('en');
