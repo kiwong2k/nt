@@ -1,11 +1,260 @@
 /**
 * Low level API wrapper for wmap.
-* See http://sims.red.iplanet.com/messaging/cascabel/funcspecs/webmail_wmap.html or
-* http://wikis.sun.com/display/CommSuite/Compact+Web+Mail+Access+Protocol+%28WMAP%29+Specification
+* google 'wmap specification'
 * for more details on the methods and parameters found here.
 */
 /* Services */
-iwc.app.service('wmap', function($rootScope) {
+iwc.app.service('wmap', function($http, $q, $cookies) {
+	
+	this._getGetMboxUrl = function(mbox, opthdrs, searchExpr, start, offset, uidsOnly, sortBy, sortOrder, byUID) {
+		// It is legal for the value of start to be a negative number,
+		// in which case messages are counted from the back. We use that
+		// for "Most recent last" initial sorting.
+		if (!mbox) {
+			mbox = 'INBOX';
+		}
+		var url = p.MAILBOX_URL;
+
+		if (typeof(sortBy)=="undefined") {
+			sortBy = 'recv';
+		}
+		if (typeof(sortOrder)=="undefined") {
+			sortOrder = 'F';
+		}
+
+		var params = {
+			rev: 3,
+			sid: '',
+			mbox: mbox,
+			count: offset,
+			date: true,
+			lang: djConfig.locale,
+			sortby: sortBy,
+			sortorder: sortOrder
+		};
+		// Get the envelopes starting by UID (needed when we sort)
+		// instead of by index.
+		if(byUID) {
+			params.startuid = start;
+		}
+		else {
+			params.start = start;
+		}
+
+		if ((mbox == iwc.userPrefs.mail.foldermapping.sent) ||
+		    (mbox == iwc.userPrefs.mail.foldermapping.drafts)) {
+			// For sent and drafts folder, change the from header to to
+			params.from = "to";
+		}
+
+		if (opthdrs && (!dojo.isArray(opthdrs) || (opthdrs.length>0))) {
+			params.headerv = opthdrs;
+		}
+
+		if (searchExpr) {
+			params.srch = searchExpr;
+		}
+
+		// sortBy possible values:
+		//	"recv", "from", "size", "subj", "uid", "seen", "iwc.protocol.wmapriority", "attach"
+		// sortOrder possible values:
+		//	"R", "F"
+		//
+		if (typeof(uidsOnly)!="undefined" && uidsOnly) {
+			params.uidlist = 1;
+		}
+
+		var query = dojo.objectToQuery(params);
+		url += "?"+query;
+		return url;
+	};
+
+	this.fetchMailbox = function(mboxName, opthdrs, searchExpr, start, offset, sortBy, sortOrder, byUID,mboxUrl) {
+		var deferred = this._sendRequest(mboxUrl||this._getGetMboxUrl(mboxName, opthdrs, searchExpr, start, offset, false, sortBy, sortOrder, byUID));
+		deferred.addCallback(
+			function(response) {
+				// returns a list of messages for mbox in the form of an object:
+				var mailbox = null;
+				var kwArgs = {};
+				if (p._format == p.outputFormat.COMPACT) {
+					// http://sims.red.iplanet.com/messaging/cascabel/funcspecs/webmail_compactwmap.txt
+					// [errno,         0	error number, 0 if ok
+					// 'errstr',       1	error string, if errno != 0
+					// size,           2	number of messages in folder or search result
+					// start,          3	index of first message returned
+					// count           4	number of messages returned
+					// [flagdata,*],   5	array of flags (empty if uidlist=1)
+					// [msgdata,*],    6	array of messages
+					// seen,           7	number of seen msgs in folder
+					// quotaused,      8	in bytes, or 0 if no quotas
+					// msgquotaused,   9	number of messages, or 0 if no quotas
+					// lastuid        10	uid of last message in mailbox
+					// ]
+					//
+					// flagdata:
+					// ['name',        0	flag name
+					// value]          1	bit to match with msgdata's flag
+					//
+					//
+					// msgdata:
+					//
+					// [uid,      0	message uid
+					// size,      1	size in bytes
+					// date,      2	time_t value
+					// flags,     3	or'ed bits for message flags
+					// 'from',    4	from header, may be redefined by from argument
+					// 'subject', 5
+					// opthdrs    6 extra header values (if passed headerv args)
+					// ]
+					//
+					// If uidlist=1 then msgdata is simply the unbracketed uid.
+
+					if (response[0] === 0) {
+						kwArgs.size         = response[2];
+						kwArgs.start        = response[3];
+						kwArgs.count        = response[4];
+						kwArgs.flagdata     = response[5];
+						kwArgs.msgdata      = response[6];
+						kwArgs.seen         = response[7];
+						kwArgs.quotaused    = response[8];
+						kwArgs.msgquotaused = response[9];
+						kwArgs.lastuid      = response[10];
+						mailbox = new iwc.datastruct.MailFolder(mboxName, kwArgs);
+					} else {
+						// protocol error
+						return p._createError(response[0], response[1]);
+					}
+				}
+				return mailbox;
+			}
+		);
+		return deferred;
+	};
+
+	this._sendRequest = function(	param, // String || Form 
+									sync,  // Boolean
+									format ) {
+		if (!sync) {
+			sync = false;
+		}
+		if (typeof(format) == "undefined") {
+			format=p._format;
+		}
+		if (typeof(param) == "object") {
+			console.debug( "sync=", sync, " iwc.protocol.wmap::_sendRequest(): POST ", param.action);
+		} else {
+			console.debug("sync=", sync, "iwc.protocol.wmap::_sendRequest():  GET ", param);
+		}
+
+		var isFormData = ((typeof(param)=="object") &&
+		                  param.enctype &&
+		                  param.enctype.match("form-data") ) ? true : false;
+
+		var timeout = iwc.options.timeout.request*1000;
+		if (param.action) {
+			if(param.action.indexOf("attach") > -1) {
+				timeout = iwc.options.timeout.uploadRequest*1000;
+			} else if (param.action.indexOf("collect") > -1) {
+				timeout = (iwc.userPrefs.mail.externalaccounts &&
+					   iwc.userPrefs.mail.externalaccounts.pop) ?
+					   iwc.userPrefs.mail.externalaccounts.pop.timeout : 600;
+				timeout *= 1000;
+			}
+		}
+
+		var deferred;
+
+		switch(format) {
+			case p.outputFormat.JAVASCRIPT:
+				if(typeof(param) == "object") {
+					if (param.action.indexOf("attach") > -1) {
+						timeout = iwc.options.timeout.uploadRequest*1000;
+					}
+				}
+
+				deferred = dojo.io.iframe.send(
+					{
+						form: (typeof(param) == "object" ? param : null),
+						url:  (typeof(param) == "string" ? param : null),
+						content: isFormData ? null : {token: iwc.secureToken},
+						preventCache: true,
+						handleAs: "html",
+						sync: sync,
+						timeout: timeout
+					}
+				);
+				deferred.addCallback(p._handleMsc);
+				break;
+			default:
+				if (typeof(param) == "object") {
+					if(param.rawPost) {
+						deferred = dojo.rawXhrPost(
+							dojo.mixin(
+								{
+									timeout: timeout,
+									sync: sync
+								},
+								param.rawPost
+							)
+						);
+					} else {
+						deferred = dojo.xhrPost(
+							{
+								form: param,
+								content: isFormData ? null : {token: iwc.secureToken, ttl:(timeout/1000)},
+								preventCache: true,
+								handleAs: "text",
+								timeout: timeout,
+								sync: sync
+							}
+						);
+					}
+				} else {
+					deferred = dojo.xhrGet(
+						{
+							url: param,
+							content: {token: iwc.secureToken},
+							preventCache: true,
+							handleAs: "text",
+							timeout: timeout,
+							sync: sync
+						}
+					);
+				}
+				deferred.addCallback(p._handleMjs);
+		}
+
+		deferred.addErrback(iwc.error.callback);
+		return deferred;
+	};
+	
+
+	p._handleMjs = function(response) {
+		// strip the "while(1);\n"
+		response = dojo.string.trim(response);
+		if (response.indexOf("while(1);") === 0) {
+			response = response.substring(10);
+		}
+		response = dojo.fromJson(response);
+		//console.log('iwc.protocol._handleMjs ', response);
+
+		if(response && dojo.isArray(response)){
+			if(response[0] !== 0){
+				var error = new Error(response[1]);
+				// add member errno so cb can do additional handling
+				error.errno = response[0];
+				if(error.errno=='1101'&&response[2])
+					error.gotoURL = response[2];
+				console.warn('wmap protocol error: ', error);
+				return error;
+			} else {
+				return response;
+			}
+		}
+
+		return new Error(iwc.api.getLocalization().error_replyinvalid);
+	};
+
 
 });
 
