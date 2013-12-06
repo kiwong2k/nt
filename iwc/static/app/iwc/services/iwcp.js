@@ -1,7 +1,7 @@
 'use strict';
 
 /* Services */
-iwc.app.service('iwcp', function($http, $q, $cookies) {
+iwc.app.service('iwcp', function($http, $q, iwcookies) {
 	this._unescapeSenderIdentity = function(prefs) {
 
 		// The following function is copied from iwc.datastruct.VCard._unescape_crlf
@@ -36,16 +36,14 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 	this._serializeParams = function(param) {
 		param = param || {};
 		param['fmt-out'] = 'text/json';	// additional param
-		var cookieIwcAuth = $cookies['iwc-auth'] || "";
-		var token = cookieIwcAuth.replace(/(^token=|.*?:token=)([^:]*)(.*)/i, '$2')
-		if (token != cookieIwcAuth)
-			param['token'] = token;
+		param['token'] = iwcookies.get('token');
 		return $.param(param);
 	}
 
 	this._postRequest = function(url, param) {
 		var deferred = $q.defer();
 
+		url = iwcookies.get('path') + url;
 		$http.post(
 			url, // url
 			this._serializeParams(param),
@@ -85,7 +83,7 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 
 		return this._postRequest(
 			//"http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/prelogin.iwc" // url
-			"/iwc/svc/iwcp/prelogin.iwc" // url
+			"/svc/iwcp/prelogin.iwc" // url
 		);
 	}
 
@@ -95,7 +93,7 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 
 		return this._postRequest(
 			//'http://pacifier.us.oracle.com:8080/iwc/svc/iwcp/login.iwc', // url
-			'/iwc/svc/iwcp/login.iwc', // url
+			'/svc/iwcp/login.iwc', // url
 			param
 		);
 	}
@@ -105,7 +103,7 @@ iwc.app.service('iwcp', function($http, $q, $cookies) {
 
 		var _this = this;
 		return this._postRequest(
-			'/iwc/svc/iwcp/get_allprefs.iwc' // url
+			'/svc/iwcp/get_allprefs.iwc' // url
 		).then(function(data) {
 			return _this._unescapeSenderIdentity(data.iwcp.preferences);
 		});

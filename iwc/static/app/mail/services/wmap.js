@@ -4,7 +4,7 @@
 * for more details on the methods and parameters found here.
 */
 /* Services */
-iwc.app.service('wmap', function($http, $q, $cookies) {
+iwc.app.service('wmap', function($http, $iwcprefs, $q, $cookies) {
 	
 	this._getGetMboxUrl = function(mbox, opthdrs, searchExpr, start, offset, uidsOnly, sortBy, sortOrder, byUID) {
 		// It is legal for the value of start to be a negative number,
@@ -13,7 +13,7 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 		if (!mbox) {
 			mbox = 'INBOX';
 		}
-		var url = p.MAILBOX_URL;
+		var url = this.MAILBOX_URL;
 
 		if (typeof(sortBy)=="undefined") {
 			sortBy = 'recv';
@@ -69,14 +69,14 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 		return url;
 	};
 
-	this.fetchMailbox = function(mboxName, opthdrs, searchExpr, start, offset, sortBy, sortOrder, byUID,mboxUrl) {
+	this.fetchMailbox = function(mboxName, opthdrs, searchExpr, start, offset, sortBy, sortOrder, byUID, mboxUrl) {
 		var deferred = this._sendRequest(mboxUrl||this._getGetMboxUrl(mboxName, opthdrs, searchExpr, start, offset, false, sortBy, sortOrder, byUID));
 		deferred.addCallback(
 			function(response) {
 				// returns a list of messages for mbox in the form of an object:
 				var mailbox = null;
 				var kwArgs = {};
-				if (p._format == p.outputFormat.COMPACT) {
+				if (this._format == this.outputFormat.COMPACT) {
 					// http://sims.red.iplanet.com/messaging/cascabel/funcspecs/webmail_compactwmap.txt
 					// [errno,         0	error number, 0 if ok
 					// 'errstr',       1	error string, if errno != 0
@@ -122,7 +122,7 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 						mailbox = new iwc.datastruct.MailFolder(mboxName, kwArgs);
 					} else {
 						// protocol error
-						return p._createError(response[0], response[1]);
+						return this._createError(response[0], response[1]);
 					}
 				}
 				return mailbox;
@@ -138,7 +138,7 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 			sync = false;
 		}
 		if (typeof(format) == "undefined") {
-			format=p._format;
+			format=this._format;
 		}
 		if (typeof(param) == "object") {
 			console.debug( "sync=", sync, " iwc.protocol.wmap::_sendRequest(): POST ", param.action);
@@ -165,7 +165,7 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 		var deferred;
 
 		switch(format) {
-			case p.outputFormat.JAVASCRIPT:
+			case this.outputFormat.JAVASCRIPT:
 				if(typeof(param) == "object") {
 					if (param.action.indexOf("attach") > -1) {
 						timeout = iwc.options.timeout.uploadRequest*1000;
@@ -183,7 +183,7 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 						timeout: timeout
 					}
 				);
-				deferred.addCallback(p._handleMsc);
+				deferred.addCallback(this._handleMsc);
 				break;
 			default:
 				if (typeof(param) == "object") {
@@ -221,7 +221,7 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 						}
 					);
 				}
-				deferred.addCallback(p._handleMjs);
+				deferred.addCallback(this._handleMjs);
 		}
 
 		deferred.addErrback(iwc.error.callback);
@@ -229,7 +229,7 @@ iwc.app.service('wmap', function($http, $q, $cookies) {
 	};
 	
 
-	p._handleMjs = function(response) {
+	this._handleMjs = function(response) {
 		// strip the "while(1);\n"
 		response = dojo.string.trim(response);
 		if (response.indexOf("while(1);") === 0) {
