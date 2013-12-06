@@ -161,7 +161,7 @@ function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
 
 	// initializations
 
-	$scope.selectedFolder = "inbox";
+	$scope.selectedFolder = "Inbox";
 	$scope.selectedFolderDN = "< " + $scope.selectedFolder;
 	$scope.uid = 100;
 	$scope.msgs = $scope._fetchMsgs("Inbox", $scope.uid, 300);
