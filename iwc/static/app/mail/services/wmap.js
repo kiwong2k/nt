@@ -5,8 +5,9 @@
 * for more details on the methods and parameters found here.
 */
 /* Services */
-iwc.app.
-factory('wmap', function($rootScope) {
+iwc.app.service('wmap', function($rootScope) {
+
+});
 
 /*
 	var p = iwc.protocol.wmap;
@@ -1164,5 +1165,6 @@ factory('wmap', function($rootScope) {
 	p.LDAP_URL = p.URL + "ldap.msc";
 	p.COLLECT_URL  = p.URL+"collect.mjs";
 	p.LOOKUP_URL  = p.URL+"lookup.mjs";
-	*/
-}
+
+*/
+
