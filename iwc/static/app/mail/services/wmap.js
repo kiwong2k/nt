@@ -4,7 +4,7 @@
 * for more details on the methods and parameters found here.
 */
 /* Services */
-iwc.app.service('wmap', function($http, $iwcprefs, $q, $cookies) {
+iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 	
 	this._getGetMboxUrl = function(mbox, opthdrs, searchExpr, start, offset, uidsOnly, sortBy, sortOrder, byUID) {
 		// It is legal for the value of start to be a negative number,
@@ -28,7 +28,8 @@ iwc.app.service('wmap', function($http, $iwcprefs, $q, $cookies) {
 			mbox: mbox,
 			count: offset,
 			date: true,
-			lang: djConfig.locale,
+			lang: iwcookies.get('lang'),
+			token: iwcookies.get('token'),
 			sortby: sortBy,
 			sortorder: sortOrder
 		};
@@ -41,10 +42,10 @@ iwc.app.service('wmap', function($http, $iwcprefs, $q, $cookies) {
 			params.start = start;
 		}
 
-		if ((mbox == iwc.userPrefs.mail.foldermapping.sent) ||
-		    (mbox == iwc.userPrefs.mail.foldermapping.drafts)) {
+		if (mbox == iwcPrefs.get('mail.foldermapping.sent') ||
+		    mbox == iwcPrefs.get('mail.foldermapping.drafts')) {
 			// For sent and drafts folder, change the from header to to
-			params.from = "to";
+			params.from = 'to';
 		}
 
 		if (opthdrs && (!dojo.isArray(opthdrs) || (opthdrs.length>0))) {
@@ -64,15 +65,33 @@ iwc.app.service('wmap', function($http, $iwcprefs, $q, $cookies) {
 			params.uidlist = 1;
 		}
 
-		var query = dojo.objectToQuery(params);
+		var query = $.param(params);
 		url += "?"+query;
 		return url;
 	};
 
-	this.fetchMailbox = function(mboxName, opthdrs, searchExpr, start, offset, sortBy, sortOrder, byUID, mboxUrl) {
-		var deferred = this._sendRequest(mboxUrl||this._getGetMboxUrl(mboxName, opthdrs, searchExpr, start, offset, false, sortBy, sortOrder, byUID));
-		deferred.addCallback(
-			function(response) {
+	//this.fetchMailbox = function(mboxName, opthdrs, searchExpr, start, offset, sortBy, sortOrder, byUID, mboxUrl) {
+	this.fetchMailbox = function(param) {
+		param = angular.extend(
+			{
+				rev: 3,
+				sid: '',
+				mbox: 'INBOX',
+				count: 50,
+				start: 0,
+				sortby: 'recv',
+				from: (param.mbox == iwcPrefs.get('mail.foldermapping.sent') || param.mbox == iwcPrefs.get('mail.foldermapping.drafts'))
+					? 'to'
+					: undefined,
+				lang: iwcookies.get('lang'),
+				token: iwcookies.get('token')
+			}, 
+			param
+		);
+
+		var url = this.MAILBOX_URL + '?' + $.param(param);
+		return this._getRequest(url).
+			then(function(response) {
 				// returns a list of messages for mbox in the form of an object:
 				var mailbox = null;
 				var kwArgs = {};
@@ -119,16 +138,38 @@ iwc.app.service('wmap', function($http, $iwcprefs, $q, $cookies) {
 						kwArgs.quotaused    = response[8];
 						kwArgs.msgquotaused = response[9];
 						kwArgs.lastuid      = response[10];
-						mailbox = new iwc.datastruct.MailFolder(mboxName, kwArgs);
+						//mailbox = new iwc.datastruct.MailFolder(mboxName, kwArgs);
 					} else {
 						// protocol error
-						return this._createError(response[0], response[1]);
+						//return this._createError(response[0], response[1]);
 					}
 				}
 				return mailbox;
 			}
 		);
-		return deferred;
+	};
+
+	this._getRequest = function(url) {
+		var deferred = $q.defer();
+
+		$http.get(
+			url // url
+		).
+		success(function(data, status) {
+			// prelogin.iwc does not return any error-code
+			return this._handleMjs(data);
+		}).
+		error(function(data, status) {
+			console.error('wmap::_getRequest failed', url);
+			deferred.reject(data);
+			//return $q.reject(data);
+		});
+
+		return deferred.promise;
+	};
+
+	this._postRequest = function(url, param) {
+
 	};
 
 	this._sendRequest = function(	param, // String || Form 
@@ -255,7 +296,23 @@ iwc.app.service('wmap', function($http, $iwcprefs, $q, $cookies) {
 		return new Error(iwc.api.getLocalization().error_replyinvalid);
 	};
 
+	this.outputFormat = { COMPACT: "compact", JAVASCRIPT: "javascript" };
+	this._format = this.outputFormat.COMPACT;
 
+	this.URL = iwcookies.get('path') + "/svc/wmap/";
+	this.ATTACH_URL  = this.URL+"attach.msc";
+	this.ATTACH_URL_XHR  = this.URL+"attach.mjs";
+	this.CONFIG_URL  = this.URL+"cfg.mjs";
+	this.COMMAND_URL = this.URL+"cmd.mjs";
+	this.MAILBOX_URL = this.URL+"mbox.mjs";
+	this.MESSAGE_URL = this.URL+"msg.mjs";
+	this.LIST_SHARED_MBOX_URL = this.URL+"list.mjs";
+	this.LISTFOLDERS_CMD = this.URL+"listfolders.mjs";
+	this.SPELL_CHECKER_URL = this.URL + "spell.msc";
+	this.SPAM_URL = this.URL + "feedback.mjs";
+	this.LDAP_URL = this.URL + "ldathis.msc";
+	this.COLLECT_URL  = this.URL+"collect.mjs";
+	this.LOOKUP_URL  = this.URL+"lookup.mjs";
 });
 
 /*
