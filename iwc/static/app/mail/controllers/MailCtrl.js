@@ -1,5 +1,7 @@
-function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
-										$translate, $translatePartialLoader) {
+'use strict';
+
+function MailCtrl($scope, $filter, $modal, iwcprefs, c11n, 
+			$translate, $translatePartialLoader) {
 	//
 	// private functions start here
 	//
@@ -161,12 +163,6 @@ function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
 
 	// initializations
 
-	$scope.selectedFolder = "Inbox";
-	$scope.selectedFolderDN = "< " + $scope.selectedFolder;
-	$scope.uid = 100;
-	$scope.msgs = $scope._fetchMsgs("Inbox", $scope.uid, 300);
-	$scope.msgsChecked = [];
-
 	$scope.panels = [];
 
 	// initialize function to setup member variables
@@ -192,6 +188,25 @@ function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
 			{"template": 'mail/templates/dialog/compose/compose.html', "selected": true, "controller": 'ComposeDialog'}
 		];
 
+		$scope.selectedFolder = "INBOX";
+		$scope.selectedFolderDN = "< " + $scope.selectedFolder;
+
+
+		$scope.uid = 100;
+		$scope.msgs = $scope._fetchMsgs("Inbox", $scope.uid, 300);
+
+		$scope.msgsChecked = [];
+
+		/*
+		wmap.fetchMailbox(
+			{
+				mbox: "INBOX"
+			}
+		).then(function(mailbox) {
+			var i = 10;
+			i++;
+		})
+*/
 
 	}
 
@@ -211,6 +226,7 @@ function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
 			c11n.loadModule('c11nMailCtrl', $scope.startup, {$scope: $scope});
 	});	
 
-
 }
+
+
 

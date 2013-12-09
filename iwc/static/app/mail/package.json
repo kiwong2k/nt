@@ -1,6 +1,6 @@
 [
-	"mail/services/selectMsg.js",
 	"mail/services/wmap.js",
+	"mail/services/selectMsg.js",
 	"mail/controllers/MailCtrl.js",
 	"mail/controllers/ComposeDialog.js"
 ]

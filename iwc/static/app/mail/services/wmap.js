@@ -4,8 +4,9 @@
 * for more details on the methods and parameters found here.
 */
 /* Services */
+
 iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
-	
+
 	this._getGetMboxUrl = function(mbox, opthdrs, searchExpr, start, offset, uidsOnly, sortBy, sortOrder, byUID) {
 		// It is legal for the value of start to be a negative number,
 		// in which case messages are counted from the back. We use that
@@ -68,7 +69,7 @@ iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 		var query = $.param(params);
 		url += "?"+query;
 		return url;
-	};
+	}
 
 	//this.fetchMailbox = function(mboxName, opthdrs, searchExpr, start, offset, sortBy, sortOrder, byUID, mboxUrl) {
 	this.fetchMailbox = function(param) {
@@ -147,7 +148,7 @@ iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 				return mailbox;
 			}
 		);
-	};
+	}
 
 	this._getRequest = function(url) {
 		var deferred = $q.defer();
@@ -166,11 +167,11 @@ iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 		});
 
 		return deferred.promise;
-	};
+	}
 
 	this._postRequest = function(url, param) {
 
-	};
+	}
 
 	this._sendRequest = function(	param, // String || Form 
 									sync,  // Boolean
@@ -267,7 +268,7 @@ iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 
 		deferred.addErrback(iwc.error.callback);
 		return deferred;
-	};
+	}
 	
 
 	this._handleMjs = function(response) {
@@ -294,7 +295,7 @@ iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 		}
 
 		return new Error(iwc.api.getLocalization().error_replyinvalid);
-	};
+	}
 
 	this.outputFormat = { COMPACT: "compact", JAVASCRIPT: "javascript" };
 	this._format = this.outputFormat.COMPACT;
@@ -314,6 +315,7 @@ iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 	this.COLLECT_URL  = this.URL+"collect.mjs";
 	this.LOOKUP_URL  = this.URL+"lookup.mjs";
 });
+
 
 /*
 	var p = iwc.protocol.wmap;
