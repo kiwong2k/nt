@@ -4,8 +4,8 @@
 * for more details on the methods and parameters found here.
 */
 /* Services */
-
-iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
+iwc.app.service('wmap', ['$http', '$q', 'iwcookies', 'iwcprefs',  
+				function($http, $q, iwcookies, iwcprefs) {
 
 	this._getGetMboxUrl = function(mbox, opthdrs, searchExpr, start, offset, uidsOnly, sortBy, sortOrder, byUID) {
 		// It is legal for the value of start to be a negative number,
@@ -314,8 +314,8 @@ iwc.app.service('wmap', function($http, $q, iwcookies, iwcprefs) {
 	this.LDAP_URL = this.URL + "ldathis.msc";
 	this.COLLECT_URL  = this.URL+"collect.mjs";
 	this.LOOKUP_URL  = this.URL+"lookup.mjs";
-});
 
+}]);
 
 /*
 	var p = iwc.protocol.wmap;

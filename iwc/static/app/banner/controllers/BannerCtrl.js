@@ -1,9 +1,8 @@
 'use strict';
 
 /* Controllers */
-
-function BannerCtrl($scope, iwcprefs, c11n) {
-
+iwc.app.controller('BannerCtrl', ['$scope', 'iwcprefs', 'c11n', 
+				function($scope, iwcprefs, c11n) {
 	// initialize function to setup member variables
 	$scope.initialize = function() {
 		 $scope.username = iwcprefs.get('user_prefs.general.screenname') || 
@@ -20,4 +19,4 @@ function BannerCtrl($scope, iwcprefs, c11n) {
 
  	c11n.loadModule('c11nBannerCtrl', $scope.startup, {$scope: $scope});
  
-}
+}]);

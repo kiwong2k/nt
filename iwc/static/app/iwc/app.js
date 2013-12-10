@@ -18,3 +18,10 @@ iwc.app.config(function($translateProvider, $translatePartialLoaderProvider) {
 
 	$translateProvider.preferredLanguage('en');
 });
+
+
+iwc.app.config(function($controllerProvider, $provide) {
+	iwc.app.controller = $controllerProvider.register;
+	iwc.app.service = $provide.service;
+});
+

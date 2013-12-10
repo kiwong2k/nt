@@ -1,7 +1,10 @@
 'use strict';
 
-function MailCtrl($scope, $filter, $modal, iwcprefs, c11n, 
-			$translate, $translatePartialLoader) {
+
+iwc.app.controller('MailCtrl', ['$scope', '$filter', '$modal', 'iwcprefs', 'c11n', 
+			'$translate', '$translatePartialLoader', 'wmap',
+				function($scope, $filter, $modal, iwcprefs, c11n, 
+					$translate, $translatePartialLoader, wmap) {
 	//
 	// private functions start here
 	//
@@ -16,6 +19,9 @@ function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
 				{
 					"uid": uid,
 					"date": time - i*18000000,
+
+
+
 					"from": "ki.wong@oracle.com",
 					"subject": "Demo msg " + uid,
 					"size": 100000 * Math.random(),
@@ -206,7 +212,7 @@ function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
 			var i = 10;
 			i++;
 		})
-*/
+		*/
 
 	}
 
@@ -225,8 +231,7 @@ function MailCtrl($scope, $filter, $modal, iwcprefs, c11n,
 		then(function() {
 			c11n.loadModule('c11nMailCtrl', $scope.startup, {$scope: $scope});
 	});	
+	
 
-}
-
-
+}]);
 
