@@ -1,8 +1,9 @@
 'use strict';
 
 /* Controllers */
-
-function LoginCtrl($scope, $window, $translate, $translatePartialLoader, iwcp, c11n) {
+iwc.app.controller('LoginCtrl', ['$scope', '$window', '$translate', '$translatePartialLoader', 'iwcp', 'c11n',
+		function($scope, $window, $translate, $translatePartialLoader, iwcp, c11n) {
+//function LoginCtrl($scope, $window, $translate, $translatePartialLoader, iwcp, c11n) {
 
 	$scope.dataChanged = function() {
 		$scope.isDisabled = !($scope.userName && $scope.password);
@@ -43,5 +44,6 @@ function LoginCtrl($scope, $window, $translate, $translatePartialLoader, iwcp, c
 			console.log('LoginCtrl c11n startup failed');
 
 		});
- 	
-}
+ 
+}]);	
+//}
