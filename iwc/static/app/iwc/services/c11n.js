@@ -1,7 +1,8 @@
 'use strict';
 
 /* Services */
-iwc.app.service('c11n', function($http, $injector, $q, $cacheFactory, iwcprefs, iwcutil) {
+iwc.app.service('c11n', ['$http', '$injector', '$q', '$cacheFactory', 'iwcprefs', 'iwcutil',
+					function($http, $injector, $q, $cacheFactory, iwcprefs, iwcutil) {
 
 	this.initialize = function() {
 		this.enabled = this.enabled || iwcprefs.get('service_acl.c11n-service');		
@@ -85,7 +86,7 @@ iwc.app.service('c11n', function($http, $injector, $q, $cacheFactory, iwcprefs, 
 		}
 	}
 
-});
+}]);
 
 
 /* sample of config.json

@@ -1,7 +1,8 @@
 'use strict';
 
 /* Services */
-iwc.app.service('iwcookies', function($cacheFactory, $cookies, iwcutil) {
+iwc.app.service('iwcookies', ['$cacheFactory', '$cookies', 'iwcutil', 
+							function($cacheFactory, $cookies, iwcutil) {
 	this._getCookie = function(key) {
 		var cookies = ($cookies['iwc-auth'] || "").split(':');
 		var o = {};
@@ -27,4 +28,4 @@ iwc.app.service('iwcookies', function($cacheFactory, $cookies, iwcutil) {
 	}
 
 	this.cache = $cacheFactory('iwccache');	
-});
+}]);

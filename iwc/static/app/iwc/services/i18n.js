@@ -1,5 +1,6 @@
 /* Services */
-iwc.app.service('i18n', function($cacheFactory, iwcutil) {
+iwc.app.service('i18n', ['$cacheFactory', 'iwcutil', 
+							function($cacheFactory, iwcutil) {
 
 	this.put = function(value) {
 		this.cache.put("i18n", value);
@@ -10,4 +11,4 @@ iwc.app.service('i18n', function($cacheFactory, iwcutil) {
 	}
 
 	this.cache = $cacheFactory.get('iwccache');	
-});
+}]);

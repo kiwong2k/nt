@@ -1,7 +1,8 @@
 'use strict';
 
 /* Services */
-iwc.app.service('iwcp', function($http, $q, iwcookies) {
+iwc.app.service('iwcp', ['$http', '$q', 'iwcookies', 
+			function($http, $q, iwcookies) {
 	this._unescapeSenderIdentity = function(prefs) {
 
 		// The following function is copied from iwc.datastruct.VCard._unescape_crlf
@@ -109,7 +110,7 @@ iwc.app.service('iwcp', function($http, $q, iwcookies) {
 		});
 	}
 
-});
+}]);
 
 /*
 	this.preLogin = function() {
