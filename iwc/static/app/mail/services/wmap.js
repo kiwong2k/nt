@@ -43,8 +43,8 @@ iwc.app.service('wmap', ['$http', '$q', 'iwcookies', 'iwcprefs',
 			params.start = start;
 		}
 
-		if (mbox == iwcPrefs.get('mail.foldermapping.sent') ||
-		    mbox == iwcPrefs.get('mail.foldermapping.drafts')) {
+		if (mbox == iwcprefs.get('mail.foldermapping.sent') ||
+		    mbox == iwcprefs.get('mail.foldermapping.drafts')) {
 			// For sent and drafts folder, change the from header to to
 			params.from = 'to';
 		}
@@ -81,7 +81,7 @@ iwc.app.service('wmap', ['$http', '$q', 'iwcookies', 'iwcprefs',
 				count: 50,
 				start: 0,
 				sortby: 'recv',
-				from: (param.mbox == iwcPrefs.get('mail.foldermapping.sent') || param.mbox == iwcPrefs.get('mail.foldermapping.drafts'))
+				from: (param.mbox == iwcprefs.get('mail.foldermapping.sent') || param.mbox == iwcprefs.get('mail.foldermapping.drafts'))
 					? 'to'
 					: undefined,
 				lang: iwcookies.get('lang'),
@@ -152,13 +152,14 @@ iwc.app.service('wmap', ['$http', '$q', 'iwcookies', 'iwcprefs',
 
 	this._getRequest = function(url) {
 		var deferred = $q.defer();
+		var _this = this;
 
 		$http.get(
 			url // url
 		).
 		success(function(data, status) {
 			// prelogin.iwc does not return any error-code
-			return this._handleMjs(data);
+			return _this._handleMjs(data);
 		}).
 		error(function(data, status) {
 			console.error('wmap::_getRequest failed', url);
@@ -273,14 +274,15 @@ iwc.app.service('wmap', ['$http', '$q', 'iwcookies', 'iwcprefs',
 
 	this._handleMjs = function(response) {
 		// strip the "while(1);\n"
-		response = dojo.string.trim(response);
+		response = response.trim();
 		if (response.indexOf("while(1);") === 0) {
 			response = response.substring(10);
 		}
-		response = dojo.fromJson(response);
+		//response = angular.fromJson(response);
+		response = eval("(" + response + ")"); // Object
 		//console.log('iwc.protocol._handleMjs ', response);
 
-		if(response && dojo.isArray(response)){
+		if(response && angular.isArray(response)){
 			if(response[0] !== 0){
 				var error = new Error(response[1]);
 				// add member errno so cb can do additional handling

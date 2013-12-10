@@ -1,4 +1,9 @@
 /* Controllers */
+
+/*
+iwc.app.controller('c11nIwcAppCtrl', ['$scope', 
+				function($scope) {
+*/
 function c11nIwcAppCtrl($scope) {
 	// To reuse parent class methods, you must save parent class methods before redefine them
 	$scope.oldFuncs = {};
@@ -22,5 +27,6 @@ function c11nIwcAppCtrl($scope) {
 		);		
 	}
 
-
+//}]);
 }
+

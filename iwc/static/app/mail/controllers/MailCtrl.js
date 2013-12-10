@@ -203,7 +203,7 @@ iwc.app.controller('MailCtrl', ['$scope', '$filter', '$modal', 'iwcprefs', 'c11n
 
 		$scope.msgsChecked = [];
 
-		/*
+		
 		wmap.fetchMailbox(
 			{
 				mbox: "INBOX"
@@ -212,7 +212,7 @@ iwc.app.controller('MailCtrl', ['$scope', '$filter', '$modal', 'iwcprefs', 'c11n
 			var i = 10;
 			i++;
 		})
-		*/
+		
 
 	}
 
