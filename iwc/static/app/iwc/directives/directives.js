@@ -3,7 +3,7 @@
 /* Directives */
 
 iwc.app.
-	directive('iwcngLayout', function() {
+	directive('iwcngLayout', [ function() {
 		return {
 			restrict: 'A',
 		   	scope: true,
@@ -139,8 +139,8 @@ iwc.app.
 
 			}
 		};
-	}).
-	directive('iwcngTop', function() {
+	}]).
+	directive('iwcngTop', [function() {
 		return {
 			require: '^iwcngLayout',
 			scope: true,
@@ -149,8 +149,8 @@ iwc.app.
 				layoutCtrl.layoutTop(scope, element);
 			}
 		};
-	}).
-	directive('iwcngBottom', function() {
+	}]).
+	directive('iwcngBottom', [function() {
 		return {
 			require: '^iwcngLayout',
 			scope: true,
@@ -159,8 +159,8 @@ iwc.app.
 				layoutCtrl.layoutBottom(scope, element);
 			}
 		};
-	}).
-	directive('iwcngLeft', function() {
+	}]).
+	directive('iwcngLeft', [function() {
 		return {
 			require: '^iwcngLayout',
 			scope: true,
@@ -169,8 +169,8 @@ iwc.app.
 				layoutCtrl.layoutLeft(scope, element);
 			}
 		};
-	}).
-	directive('iwcngRight', function() {
+	}]).
+	directive('iwcngRight', [function() {
 		return {
 			require: '^iwcngLayout',
 			scope: true,
@@ -179,8 +179,8 @@ iwc.app.
 				layoutCtrl.layoutRight(scope, element);
 			}
 		};
-	}).
-	directive('iwcngCenter', function() {
+	}]).
+	directive('iwcngCenter', [function() {
 		return {
 			require: '^iwcngLayout',
 			scope: true,
@@ -189,7 +189,7 @@ iwc.app.
 				layoutCtrl.layoutCenter(scope, element);
 			}
 		};
-	})
+	}])
 
 iwc.app.directive('ngBindHtmlUnsafe', ['$sce', function($sce) {
     return {

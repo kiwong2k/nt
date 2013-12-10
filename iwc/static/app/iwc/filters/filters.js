@@ -2,7 +2,7 @@
 
 /* Filters */
 iwc.app
-.filter('smartdate', function($filter) {
+.filter('smartdate', ['$filter', function($filter) {
 	return function(input) {
 		var now = new Date();
 		var before = new Date(input);
@@ -27,5 +27,5 @@ iwc.app
 		}
 		
 	}
-});
+}]);
 
