@@ -1,5 +1,7 @@
 'use strict';
 
-function CalendarCtrl() {
+iwc.app.controller('CalendarCtrl', ['$scope', 
+				function($scope) {
+
 	
-}
+}]);
